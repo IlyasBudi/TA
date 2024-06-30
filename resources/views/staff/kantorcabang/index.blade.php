@@ -4,7 +4,7 @@
 
 @section('header')
     <div class="pagetitle">
-        <h1>Dashboard</h1>
+        <h1>Data Kantor Cabang</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/staff/dashboard">Dashboard</a></li>

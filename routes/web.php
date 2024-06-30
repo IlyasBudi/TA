@@ -4,7 +4,9 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
-use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\DestinasiController;
+use App\Http\Controllers\RekeningController;
+// use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\KantorCabangController;
 
 /*
@@ -70,12 +72,20 @@ Route::prefix('/staff')->middleware('auth:staff')->group(
         Route::put('/bus/{id}', [BusController::class, 'update']);
         Route::get('/bus/{id}/delete', [BusController::class, 'destroy']);
         // Destination
-        Route::get('/destination', [DestinationController::class, 'index']);
-        Route::get('/destination/add', [DestinationController::class, 'create']);
-        Route::post('/destination', [DestinationController::class, 'store']);
-        Route::get('/destination/{id}', [DestinationController::class, 'show']);
-        Route::get('/destination/{id}/edit', [DestinationController::class, 'edit']);
-        Route::put('/destination/{id}', [DestinationController::class, 'update']);
-        Route::get('/destination/{id}/delete', [DestinationController::class, 'destroy']);
+        Route::get('/destination', [DestinasiController::class, 'index']);
+        Route::get('/destination/add', [DestinasiController::class, 'create']);
+        Route::post('/destination', [DestinasiController::class, 'store'])->name('destination.store');
+        Route::get('/destination/{id}', [DestinasiController::class, 'show']);
+        Route::get('/destination/{id}/edit', [DestinasiController::class, 'edit']);
+        Route::put('/destination/{id}', [DestinasiController::class, 'update']);
+        Route::get('/destination/{id}/delete', [DestinasiController::class, 'destroy']);
+        // Rekening
+        Route::get('/rekening', [RekeningController::class, 'index']);
+        Route::get('/rekening/add', [RekeningController::class, 'create']);
+        Route::post('/rekening', [RekeningController::class, 'store']);
+        Route::get('/rekening/{id}', [RekeningController::class, 'show']);
+        Route::get('/rekening/{id}/edit', [RekeningController::class, 'edit']);
+        Route::put('/rekening/{id}', [RekeningController::class, 'update']);
+        Route::get('/rekening/{id}/delete', [RekeningController::class, 'destroy']);
     }
 );

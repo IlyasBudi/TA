@@ -36,7 +36,7 @@
 
 @section('content')
     <div class="pagetitle">
-        <h1>Tambah Kantor Cabang</h1>
+        <h1>Edit Kantor Cabang</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/staff/dashboard">Dashboard</a></li>

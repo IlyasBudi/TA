@@ -3,7 +3,7 @@
     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="index.html">
+        <a class="nav-link " href="/staff/dashboard">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
@@ -31,9 +31,9 @@
       </li><!-- End Contact Page Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-register.html">
-          <i class="bi bi-card-list"></i>
-          <span>Register</span>
+        <a class="nav-link collapsed" href="/staff/rekening">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Rekening</span>
         </a>
       </li><!-- End Register Page Nav -->
 

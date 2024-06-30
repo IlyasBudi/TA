@@ -4,7 +4,7 @@
 
 @section('header')
     <div class="pagetitle">
-        <h1>Data Tables</h1>
+        <h1>Data Destinasi</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/staff/dashboard">Dashboard</a></li>
@@ -28,11 +28,11 @@
                         <table class="table datatable">
                             <thead>
                                 <tr>
-                                    {{-- <th scope="col">#</th> --}}
+                                    <th scope="col">#</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Deskripsi</th>
-                                    <th scope="col">Gambar</th>
                                     <th scope="col">Harga</th>
+                                    <th scope="col">Gambar</th>
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>

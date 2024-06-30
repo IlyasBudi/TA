@@ -4,12 +4,12 @@
 
 @section('header')
     <div class="pagetitle">
-        <h1>Data Tables</h1>
+        <h1>Data Destinasi</h1>
         <nav>
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/staff/dashboard">dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/staff/bus">Bus</a></li>
-            <li class="breadcrumb-item active">Tambah Bus</li>
+            <li class="breadcrumb-item"><a href="/staff/destination">Destination</a></li>
+            <li class="breadcrumb-item active">Tambah Destinasi</li>
         </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -24,8 +24,24 @@
                     <div class="card-body">
                         <h5 class="card-title">Tambah Destinasi</h5>
 
+                        {{-- @if (session('success'))
+                        <div class="alert alert-success">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif --}}
+
                         <!-- General Form Elements -->
-                        <form action="/staff/destination" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('destination.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="row mb-3">
                                 <label for="name" class="col-sm-2 col-form-label">Nama Destinasi</label>

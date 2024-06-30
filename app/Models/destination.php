@@ -16,7 +16,7 @@ class destination extends Model
         'kantor_cabang_id',
     ];
 
-    protected $guarded = [];
+    // protected $guarded = [];
 
     public function kantor_cabang()
     {

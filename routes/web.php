@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\RekeningController;
+use App\http\Controllers\AdminController;
 // use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\KantorCabangController;
 
@@ -44,14 +45,26 @@ Route::middleware(['auth:web'])->group(
     }
 );
 
-// admin
-Route::prefix('/admin')->middleware('auth:admin')->group(
-    function () {
+// Admin
+Route::prefix('/admin')->middleware('auth:admin')->group(function () {
         Route::get('/dashboard', [PageController::class, 'admin']);
+        // Staff
+        Route::get('/staff', [AdminController::class, 'staff']);
+        Route::get('/staff/{id}', [AdminController::class, 'showStaff']);
+        // Penyewa
+        Route::get('/penyewa', [AdminController::class, 'penyewa']);
+        Route::get('/penyewa/{id}', [AdminController::class, 'showPenyewa']);
+        // Kantor Cabang
+        Route::get('/kantorcabang', [AdminController::class, 'kantorcabang']);
+        Route::get('/kantorcabang/{id}', [AdminController::class, 'showKantorCabang']);
+        Route::get('/kantorcabang/bus/{id}', [AdminController::class, 'showBus']);
+        Route::get('/kantorcabang/destination/{id}', [AdminController::class, 'showDestination']);
+        Route::get('/kantorcabang/{id}/edit', [AdminController::class, 'editKantorCabang']);
+        Route::put('/kantorcabang/{id}', [AdminController::class, 'updateKantorCabang']);
     }
 );
 
-// pka
+// Staff
 Route::prefix('/staff')->middleware('auth:staff')->group(
     function () {
         Route::get('/dashboard', [PageController::class, 'staff']);

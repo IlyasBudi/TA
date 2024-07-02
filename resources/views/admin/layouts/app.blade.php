@@ -27,6 +27,13 @@
       
         <!-- Template Main CSS File -->
         <link href="{{ asset('/niceadmin') }}/assets/css/style.css" rel="stylesheet">
+
+        <link href="{{ asset('v1/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
+        @stack('before-style')
+        <link href="{{ asset('v1/css/style.css') }}" rel="stylesheet">
+        @stack('after-style')
+
+
       </head>
 
       <body>
@@ -80,5 +87,12 @@
 
         <!-- Template Main JS File -->
         <script src="{{ asset('/niceadmin') }}/assets/js/main.js"></script>
+
+        <script src="{{ asset('v1/vendor/global/global.min.js') }}"></script>
+        <script src="{{ asset('v1/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+        @stack('before-scripts')
+        <script src="{{ asset('v1/js/custom.min.js') }}"></script>
+        <script src="{{ asset('v1/js/dlabnav-init.js') }}"></script>
+        @stack('after-scripts')
       </body>
 </html>

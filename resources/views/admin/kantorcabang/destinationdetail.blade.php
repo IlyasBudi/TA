@@ -1,15 +1,15 @@
-@extends('staff.layouts.app')
+@extends('admin.layouts.app')
 
 @section('title', 'Dashboard')
 
 @section('header')
     <div class="pagetitle">
-        <h1>Data Destinasi</h1>
+        <h1>Data Kantor Cabang</h1>
         <nav>
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/staff/dashboard">dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/staff/destination">Destinasi</a></li>
-            <li class="breadcrumb-item active">Detail Destinasi</li>
+            <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="/admin/kantorcabang">Kantor Cabang</a></li>
+            <li class="breadcrumb-item active">Data Kantor Cabang</li>
         </ol>
         </nav>
     </div><!-- End Page Title -->

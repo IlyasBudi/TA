@@ -7,6 +7,7 @@ use App\Http\Controllers\BusController;
 use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\RekeningController;
 use App\http\Controllers\AdminController;
+use App\http\Controllers\PenyewaController;
 // use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\KantorCabangController;
 
@@ -35,15 +36,15 @@ Route::post('/penyewaregister', [AuthController::class, "dopenyewaregister"])->n
 Route::post('/staffregister', [AuthController::class, "dostaffregister"])->name('do.staffregister');
 
 
-Route::get('/', [PageController::class, 'user']);
-// user
-Route::middleware(['auth:web'])->group(
-    function () {
-        // isi disini routing yang cuma bisa diakses oleh user
-        // contoh penulisan
-        Route::get('/welcome', [PageController::class, 'user']);
-    }
-);
+// Route::get('/', [PageController::class, 'user']);
+// // user
+// Route::middleware(['auth:web'])->group(
+//     function () {
+//         // isi disini routing yang cuma bisa diakses oleh user
+//         // contoh penulisan
+//         Route::get('/welcome', [PageController::class, 'user']);
+//     }
+// );
 
 // Admin
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {
@@ -102,3 +103,8 @@ Route::prefix('/staff')->middleware('auth:staff')->group(
         Route::get('/rekening/{id}/delete', [RekeningController::class, 'destroy']);
     }
 );
+
+// Penyewa
+Route::get('/', [PenyewaController::class, 'landingpage']);
+Route::get('/about', [PenyewaController::class, 'about']);
+Route::get('/kantorcabang/{id}', [PenyewaController::class, 'detailkantorcabang']);

@@ -75,7 +75,7 @@
 
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-          <h2>Destinasi Populer</h2>
+          <h2>bus</h2>
           <p>Temukan destinasi populer di seluruh dunia dengan layanan kami dan nikmati pengalaman liburan yang tak terlupakan.</p>
         </div><!-- End Section Title -->
   

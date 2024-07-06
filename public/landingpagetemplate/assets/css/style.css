@@ -1579,3 +1579,38 @@ address {
   .container { max-width: 1180px; }
 
 }
+
+
+/* NAVBAR DROPDOWN */
+.btn + .dropdown-menu {
+  display: none; /* Sembunyikan dropdown secara default */
+  position: absolute; /* Posisikan dropdown relatif terhadap tombol */
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  top: 100%; /* Posisikan dropdown tepat di bawah tombol */
+  left: 1100; 
+}
+
+.btn + .dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.btn + .dropdown-menu a:hover {
+  background-color: #ddd;
+}
+
+/* @media (max-width: 768px) {
+  .dropdown-menu {
+    display: none !important; Sembunyikan dropdown secara default pada layar kecil
+    position: absolute; Atau sesuaikan posisi sesuai kebutuhan */
+    /* width: 100%; Opsi untuk membuat dropdown full width */
+    /* left: 0;
+    z-index: 1;
+  }
+} */
+

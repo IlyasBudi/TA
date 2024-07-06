@@ -4,184 +4,110 @@
 
 @section('content')
 
-    <section class="hero" id="home">
-        <div class="container">
-
-        <h2 class="h1 hero-title">Rasakan Kenyamanan Eksklusif</h2>
-
-        <p class="hero-text">
-            Kami membawa Anda lebih dekat dengan destinasi impian yang selama ini hanya bisa Anda bayangkan, dan nikmati perjalanan yang nyaman dan mewah dengan layanan kelas atas dari kami.
-        </p>
-
-        <div class="btn-group">
-            
-
-            <button class="btn btn-secondary">Book now</button>
-        </div>
-
-        </div>
-    </section>
-
-    <section class="section kantorcabang-detail">
-        <div class="container">
-
-        <div class="kantorcabang-detail-content">
-  
-            <p class="section-subtitle">Kantor Cabang</p>
-
-            <h2 class="h2 section-title">{{$kantorcabang->name}}</h2>
-            <ul class="kantorcabang-detail-list">
-            
-            <figure class="kantorcabang-detail-banner">
-                <img src="{{ Storage::url($kantorcabang->image) }}" width="530" height="258" loading="lazy" alt="" class="w-100">
-            </figure>
-
-            <li class="kantorcabang-detail-item">
-
-                <div class="kantorcabang-detail-item-icon">
-                <ion-icon name="caret-forward-outline"></ion-icon>
-                </div>
-
-                <div class="kantorcabang-detail-item-content">
-                <h3 class="h3 card-title">Nama</h3>
-                <p class="card-text">
-                    {{$kantorcabang->name}}
-                </p>
-                </div>
-
-            </li>
-
-            <li class="kantorcabang-detail-item">
-
-                <div class="kantorcabang-detail-item-icon">
-                <ion-icon name="caret-forward-outline"></ion-icon>
-                </div>
-
-                <div class="kantorcabang-detail-item-content">
-                <h3 class="h3 card-title">Alamat</h3>
-                <p class="card-text">
-                    {{$kantorcabang->address}}
-                </p>
-                </div>
-
-            </li>
-
-            <li class="kantorcabang-detail-item">
-
-                <div class="kantorcabang-detail-item-icon">
-                <ion-icon name="caret-forward-outline"></ion-icon>
-                </div>
-
-                <div class="kantorcabang-detail-item-content">
-                <h3 class="h3 card-title">Lokasi (Longitude, Latitude)</h3>
-                <p class="card-text">
-                    {{$kantorcabang->location}}
-                </p>
-                </div>
-
-            </li>
-
-            </ul>
-        
-        </div>
-
-        </div>
-    </section>
-
-    {{-- <section class="popular" id="destination">
-        <div class="container">
-
-          <p class="section-subtitle">List Bus</p>
-
-          <h2 class="h2 section-title">Di Kantor Cabang {{ $kantorcabang->name }}</h2>
-
-          @if ($kantorcabang->bus->isNotEmpty())
-          @foreach ($kantorcabang->bus as $bus)
-
-          <ul class="blog-list">
-
-            <li>
-              <div class="blog-card">
-
-                <figure class="blog-card-banner">
-
-                  <a href="#">
-                    <img src="{{ Storage::url($bus->image) }}" width="370" height="259" loading="lazy"
-                      alt="..." class="img-cover">
-                  </a>
-
-                </figure>
-
-                <div class="blog-card-content">
-
-
-                  <h3 class="h3 card-title">
-                    
-                      {{ $bus->name }}
-                  
-                  </h3>
-
-                  <a href="#" class="btn-link">
-                    <span>Read More</span>
-
-                    <ion-icon name="arrow-forward-outline" aria-hidden="true"></ion-icon>
-                  </a>
-
-                </div>
-
+    <!-- Page Title -->
+    <div class="page-title-details" data-aos="fade">
+        <div class="heading">
+          <div class="container">
+            <div class="row d-flex justify-content-center text-center">
+              <div class="col-lg-8">
+                <p class="mb-0">Kantor Cabang</p>
+                <h1>{{ $kantorcabang->name }}</h1>
               </div>
-            </li>
-
-          </ul>
-          @endforeach
-          @else
-            <p class="text-center">Kantor Cabang ini belum memiliki Bus</p>
-            @endif
+            </div>
+          </div>
         </div>
-    </section> --}}
-
-    <section class="popular" id="destination">
+        {{-- <nav class="breadcrumbs">
+          <div class="container">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li class="current">Services Details</li>
+            </ol>
+          </div>
+        </nav> --}}
+    </div><!-- End Page Title -->
+  
+      <!-- Service Details Section -->
+    <section id="kantorcabang-details" class="kantorcabang-details section">
+  
         <div class="container">
-        
+  
+          <div class="row gy-5">
+  
+            <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
 
-                <p class="section-subtitle">Temukan Wisata</p>
+              <img src="{{ Storage::url($kantorcabang->image) }}" alt="" class="img-fluid services-img">
+              <h4>Sejarah PO Haryanto</h4>
+              <p>
+                PO Haryanto didirikan pada tahun 2002 oleh H. Haryanto asal Kudus, Jawa Tengah setelah purna bertugas di Batalyon Artileri Pertahanan Udara Ringan 1/Kostrad TNI Angkatan Darat di Tangerang. Sebelumnya, ia adalah seorang tentara yang memiliki berbagai pekerjaan sampingan, salah satunya adalah agen tiket bus.
 
-                <h2 class="h2 section-title">Destinasi Populer</h2>
+                    Dengan mendapatkan pinjaman dari bank, ia membeli enam buah bus dan menggunakan armadanya tersebut untuk trayek perkotaan dengan rute Cikarang-Cimone.
+              </p>
+              <p>
+                Tetapi setelah beberapa waktu, rute tersebut dianggap kurang menguntungkan dikarenakan sepinya penumpang. Akhirnya ia mengubah armada tersebut menjadi kelas eksekutif dan mengalihkan trayeknya ke trayek antarkota dengan rute Jakarta-Kudus, Jakarta-Pati dan Jakarta-Jepara.
+                Mulai saat itulah perusahaan busnya mulai berkembang. Pada tahun 2009, PO Haryanto melakukan ekspansi bisnis pertamanya di luar Muria Raya dan juga di luar Pulau Jawa, yakni di Pulau Madura dengan trayek Jakarta-Pamekasan-Sumenep.
+              </p>
+              <p>
+                Tiga tahun kemudian tepatnya di tahun 2012, PO Haryanto kembali melakukan ekspansi bisnisnya, kali ini berada di jalur selatan jawa dengan trayek pertama yakni Jakarta-Solo-Ponorogo, serta kota-kota lain di sekitar Solo Raya seperti Klaten dan Gemolong.
 
-                @if ($kantorcabang->bus->isNotEmpty())
-                @foreach ($kantorcabang->bus as $bus)
+                Di tahun yang sama pula, PO Haryanto juga merintis trayek menuju Bojonegoro dan Purwodadi dengan bantuan adiknya, H. Annas. Saat ini, PO Haryanto telah melayani lebih dari 20 kota di Pulau Jawa dengan beberapa divisi.
+              </p>
+              <h4>Ciri Khas PO Haryanto</h4>
+              <p>
+                Haryanto dikenal dengan penggunaan skema warna bodi bus yang beragam dan meriah, serta mengangkat potensi pariwisata Kudus. Masjid Menara Kudus menjadi ikon dari bus-bus Haryanto, ditempel pada bodi samping bus. Rian Mahendra selaku Direktur Operasional (pada waktu itu) mengatakan bahwa dalam menjalankan bisnisnya, Haryanto memanfaatkan filosofi "ilmu langit", maksudnya "nilai-nilai keagamaan Islam dijadikan acuan dalam berbisnis (bus)". Untuk mewujudkan misi korporatnya itu, kaligrafi sholawat "ṣalā-llāhu ʿala Muḥammad" ditempel di seluruh armada bus Haryanto.
 
-               
+                Sebagian armada (khususnya armada keluaran 2018 keatas) juga dilengkapi dengan gambar wayang kulit, biasanya bergambar Werkudara atau Rama dan Sinta.
+              </p>
+              <p>
+                Selain ciri khas dalam armada, Haryanto juga memiliki ciri khas dalam pelayanan. Seperti peraturan untuk berhenti melaksanakan ibadah sholat (hanya khusus untuk yang Muslim) ketika dalam perjalanan, atau uang tiket konsumen yang dimana akan disumbangkan kepada yang membutuhkan sebesar 2,5 persen.
 
-                <ul class="blog-popular-list">
+                Manajemen Haryanto juga memiliki tradisi untuk memberangkatkan para anak buahnya untuk melaksanakan haji/umrah yang masih tetap dipertahankan hingga sekarang.
+              </p>
+            </div>
+  
+          </div>
+  
+        </div>
+  
+    </section><!-- /Service Details Section -->
 
-                    <li>
-                        <div class="popular-card">
-        
-                        <figure class="card-img">
-                            <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGJhbGl8ZW58MHx8MHx8fDA%3D" alt="San miguel, italy" loading="lazy">
-                        </figure>
-        
-                        <div class="card-content">
-        
-                            <h3 class="h3 card-title">
-                            <a href="#">{{ $bus->name }}</a>
-                            </h3>
-        
-                            <p class="card-text">
-                            {{ $bus->description }}
-                            </p>
-        
-                        </div>
-        
-                        </div>
-                    </li>
+    <!-- Recent Posts Section -->
+    <section id="recent-posts" class="recent-posts section">
 
-                </ul>
-                @endforeach
-                @else
-                    <p class="text-center">Kantor Cabang ini belum memiliki Bus</p>
-                    @endif
+        <!-- Section Title -->
+        <div class="container section-title" data-aos="fade-up">
+          <h2>Destinasi Populer</h2>
+          <p>Temukan destinasi populer di seluruh dunia dengan layanan kami dan nikmati pengalaman liburan yang tak terlupakan.</p>
+        </div><!-- End Section Title -->
+  
+        <div class="container">
+            @if ($kantorcabang->bus->isNotEmpty())
+            @foreach ($kantorcabang->bus as $bus)
+
+          <div class="row gy-4">
+  
+            <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+              <article>
+  
+                <div class="post-img">
+                  <img src="{{ Storage::url($bus->image) }}" alt="" class="img-fluid">
+                </div>
+  
+                <h2 class="title">
+                  <a href="blog-details.html">{{ $bus->name }}</a>
+                </h2>
+
+                <p class="post-category">{{ $bus->description }}</p>
+  
+              </article>
+            </div><!-- End post list item -->
+  
+          </div><!-- End recent posts list -->
+          
+          @endforeach
+            @else
+            <p class="text-center">Kantor Cabang ini belum memiliki Bus</p>
+             @endif
 
         </div>
-    </section>
+  
+    </section><!-- /Recent Posts Section -->

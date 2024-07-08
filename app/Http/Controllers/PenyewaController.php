@@ -27,4 +27,10 @@ class PenyewaController extends Controller
         $kantorcabang= kantor_cabang::with('bus','destination' , 'staff')->findOrFail($id);
         return view('penyewa.detailkantorcabang', ['kantorcabang' => $kantorcabang]);
     }
+
+    public function bookingpage()
+    {
+        
+        return view("penyewa.bookingpage");
+    }
 }

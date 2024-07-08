@@ -116,7 +116,7 @@
             <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
               <article>
   
-                <div class="kcpost-img">
+                <div class="post-img">
                   <img src="{{ Storage::url($kantorcabang->image) }}" height="240" width="720" alt="" class="img-fluid">
                 </div>
   

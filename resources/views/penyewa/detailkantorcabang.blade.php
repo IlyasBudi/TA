@@ -80,16 +80,17 @@
         </div><!-- End Section Title -->
   
         <div class="container">
-            @if ($kantorcabang->bus->isNotEmpty())
-            @foreach ($kantorcabang->bus as $bus)
 
           <div class="row gy-4">
   
+            @if ($kantorcabang->bus->isNotEmpty())
+            @foreach ($kantorcabang->bus as $bus)
+
             <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
               <article>
   
                 <div class="post-img">
-                  <img src="{{ Storage::url($bus->image) }}" alt="" class="img-fluid">
+                  <img src="{{ Storage::url($bus->image) }}" height="240" width="720" alt="" class="img-fluid">
                 </div>
   
                 <h2 class="title">
@@ -100,13 +101,13 @@
   
               </article>
             </div><!-- End post list item -->
-  
-          </div><!-- End recent posts list -->
-          
-          @endforeach
+            @endforeach
             @else
             <p class="text-center">Kantor Cabang ini belum memiliki Bus</p>
              @endif
+          </div><!-- End recent posts list -->
+          
+          
 
         </div>
   

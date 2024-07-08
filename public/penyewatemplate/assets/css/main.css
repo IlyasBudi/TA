@@ -1828,6 +1828,7 @@ section,
   border: 1px solid color-mix(in srgb, var(--default-color), transparent 85%);
   overflow: hidden;
   align-text: center;
+  aspect-ratio: 1; /* Makes the width and height equal */
 }
 
 .recent-posts .post-img {
@@ -2994,4 +2995,20 @@ section,
   font-size: 20px;
   margin-right: 8px;
   color: var(--accent-color);
+}
+
+/* BOOKING PAGE */
+
+.booking-form {
+ padding-top: 80px;
+ background-color: var(--background-color);
+}
+
+.label-form {
+  /* margin-right: 600px; */
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 5px;
+  font-size: 20px;
+  font-weight: 500;
 }

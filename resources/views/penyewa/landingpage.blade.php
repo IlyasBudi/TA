@@ -16,9 +16,9 @@
               <p data-aos="fade-up" data-aos-delay="200">We are team of talented designers making websites with Bootstrap</p>
             </div>
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="300">
-              <button class="hero-btn">
+              <a class="hero-btn" href="/bookingpage">
                 Book Now!
-            </button>
+            </a>
             </div>
           </div>
         </div>
@@ -219,7 +219,7 @@
               <div class="text-center">
                 <h3>Sewa Bus Kami Sekarang!</h3>
                 <p>Sewa bus pariwisata kami sekarang dan nikmati perjalanan tanpa khawatir. Hubungi kami untuk penawaran terbaik.</p>
-                <a class="cta-btn" href="#">Book Now!</a>
+                <a class="cta-btn" href="/bookingpage">Book Now!</a>
               </div>
             </div>
           </div>

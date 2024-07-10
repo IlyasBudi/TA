@@ -5,6 +5,7 @@
 @section('content')
 
 @push('before-style')
+
   <link
   href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
   rel="stylesheet"
@@ -35,10 +36,11 @@
   }
 
   .sidebar-map {
+    /* position: relative; */
     position: absolute;
     /* width: 33.3333%; */
     /* height: 100%; */
-    width: 100%;
+    width: 30%;
     height: 400px;
     top: 0;
     left: 0;
@@ -251,10 +253,7 @@
                       <div id="listings" class="listings"></div>
                     </div>
                     <div id="map" class="map"></div>
-    
-                    {{-- <div class="col-12">
-                      <textarea class="form-control" name="message" rows="6" placeholder="Message" required=""></textarea>
-                    </div> --}}
+
     
                     
     
@@ -289,7 +288,8 @@
         style: 'mapbox://styles/mapbox/light-v11',
         center: [-77.034084142948, 38.909671288923],
         zoom: 13,
-        scrollZoom: false
+        scrollZoom: false,
+        
       });
 
       const stores = {

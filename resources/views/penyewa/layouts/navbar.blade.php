@@ -11,21 +11,26 @@
         <ul>
           <li><a href="/" class="active">Home</a></li>
           <li><a href="/bookingpage">Booking</a></li>
-          <li><a href="/about">About</a></li>
+          <li><a href="/about">About Us</a></li>
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
       {{-- <a class="btn-getstarted" href="index.html#about">Get Started</a> --}}
-      <a class="btn-getstarted dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-        Profile
+      @auth
+      <a class="btn-getstarted dropdown-toggle" href="#" type="button" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+        {{ Auth::user()->name }}
       </a>
       
       <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-        <a class="dropdown-item" href="index.html#about">About Us</a>
-        <a class="dropdown-item" href="index.html#services">Our Services</a>
-        <a class="dropdown-item" href="index.html#contact">Contact Us</a>
+        <a class="dropdown-item" href="/profile/{{ Auth::user()->id }}">Profile</a>
+        <a class="dropdown-item" href="/logout">Logout</a>
       </div>
-
+      @endauth
+      @guest
+      <a class="btn-getstarted" href="/login" type="button">
+        Login
+      </a>
+      @endguest
     </div>
 </header>

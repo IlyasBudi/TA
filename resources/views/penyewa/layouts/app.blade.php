@@ -34,6 +34,28 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
+  <!-- Mapbox link -->
+  <link
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
+  rel="stylesheet"
+  />
+  <!-- Mapbox GL JS -->
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+  <link
+  href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+  rel="stylesheet"
+  />
+  <!-- Geocoder plugin -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1-dev/mapbox-gl-geocoder.min.js"></script>
+  <link
+  rel="stylesheet"
+  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1-dev/mapbox-gl-geocoder.css"
+  type="text/css"
+  />
+  <!-- Turf.js plugin -->
+  <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
+
 </head>
 
 <body>
@@ -67,6 +89,10 @@
 
   <!-- Main JS File -->
   <script src="{{ asset('/penyewatemplate') }}/assets/js/main.js"></script>
+  @stack('before-script')
+  @stack('after-script')
+  <script src="https://code.jquery.com/jquery-3.6.4.slim.js"
+        integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {

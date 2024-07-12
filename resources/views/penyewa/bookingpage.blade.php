@@ -2,8 +2,6 @@
 
 @section('title', 'Welcome')
 
-@section('content')
-
 @push('before-style')
 
   <link
@@ -145,7 +143,8 @@
     cursor: pointer;
     height: 56px;
     width: 56px;
-    background-image: url('https://docs.mapbox.com/help/demos/gl-store-locator/marker.png');
+    /* background-image: url('https://docs.mapbox.com/help/demos/gl-store-locator/marker.png'); */
+    background-image: url('/assets/images/baru/marker.svg');
   }
 
   /* Marker tweaks */
@@ -209,12 +208,13 @@
   </style>
 @endpush
 
+@section('content')
     <!-- Page Title -->
     <div class="page-title" data-aos="fade">
         <div class="heading">
           <div class="container">
             <div class="row d-flex justify-content-center text-center">
-              <div class="col-lg-8">
+              <div class="col-lg-10">
                 <h1>Booking</h1>
                 <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
               
@@ -278,7 +278,7 @@
 
 @push('after-script')
 <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoiaWx5YXMzMTciLCJhIjoiY2x4cTZ0cWwzMHdldTJxcHhhOXIyN2kxNyJ9.C-3yBGAZdbHayDe8ivXnfQ';
+      mapboxgl.accessToken = 'pk.eyJ1IjoiaWx5YXMzMTciLCJhIjoiY2x4cTd2YXN6MHR2bzJqc2g5ZnJzbzBhcSJ9.4C6RKZ06Bi7b-l5tYqwfQg';
 
       /**
        * Add the map to the page
@@ -288,7 +288,7 @@
         style: 'mapbox://styles/mapbox/light-v11',
         center: [-77.034084142948, 38.909671288923],
         zoom: 13,
-        scrollZoom: false,
+        scrollZoom: true,
         
       });
 

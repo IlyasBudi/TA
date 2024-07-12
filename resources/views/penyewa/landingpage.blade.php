@@ -161,7 +161,7 @@
                 </div>
   
                 <h2 class="title">
-                  <a href="blog-details.html">Bali</a>
+                  <a href="#">Bali</a>
                 </h2>
 
                 <p class="post-category">Pura Ulun Danu Bedugul.</p>
@@ -177,7 +177,7 @@
                 </div>
   
                 <h2 class="title">
-                  <a href="blog-details.html">Yogyakarta</a>
+                  <a href="#">Yogyakarta</a>
                 </h2>
 
                 <p class="post-category">Candi Prambanan.</p>
@@ -193,7 +193,7 @@
                 </div>
   
                 <h2 class="title">
-                  <a href="blog-details.html">Malang</a>
+                  <a href="#">Malang</a>
                 </h2>
 
                 <p class="post-category">Bromo-Tengger-Semeru National Park.</p>

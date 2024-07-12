@@ -7,10 +7,10 @@
             <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt="">
             {{-- <span class="sitename">Append</span> --}}
           </a>
-          <p>Cras fermentum odio eu feugiat lide par naso tierra. Justo eget nada terra videa magna derita valies darta donna mare fermentum iaculis eu non diam phasellus.</p>
+          <p>PO Haryanto adalah sebuah perusahaan bus antarkota dan pariwisata yang berasal dari Kabupaten Kudus, Jawa Tengah.</p>
           <div class="social-links d-flex mt-4">
-            <a href=""><i class="bi bi-youtube"></i></a>
-            <a href=""><i class="bi bi-facebook"></i></a>
+            {{-- <a href=""><i class="bi bi-youtube"></i></a>
+            <a href=""><i class="bi bi-facebook"></i></a> --}}
             <a href=""><i class="bi bi-instagram"></i></a>
             <a href=""><i class="bi bi-whatsapp"></i></a>
           </div>

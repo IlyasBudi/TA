@@ -214,7 +214,7 @@
                 draggable: 'true',
             }).bindPopup(location).update();
 
-            $('#location').val(location.lat + "," + location.lng).keyup()
+            $('#location').val(location.lng + "," + location.lat).keyup()
         });
 
         // selain itu dengan fungsi di bawah juga bisa mendapatkan nilai latitude dan longitude
@@ -231,7 +231,7 @@
             } else {
                 marker.setLatLng(e.latlng);
             }
-            loc.value = lat + "," + lng;
+            loc.value = lng + "," + lat;
         });
     </script>
     <script>
@@ -254,7 +254,7 @@
                         map.removeLayer(previousMarker);
                     }
 
-                    var marker = L.marker([latitudeIn, longitudeIn]).addTo(map);
+                    var marker = L.marker([longitudeIn, latitudeIn]).addTo(map);
                     previousMarker = marker;
                     // console.log("Marker added at:", marker.getLatLng());
                 } else {

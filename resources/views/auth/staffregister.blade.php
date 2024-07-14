@@ -99,7 +99,7 @@
                         <label for="phone_number" class="form-label">Alamat</label>
                         <div class="input-group has-validation">
                           
-                          <input type="address" name="addres" class="form-control @error('address') is-invalid @enderror" id="address" required>
+                          <input type="address" name="address" class="form-control @error('address') is-invalid @enderror" id="address" required>
                           {{-- <div class="invalid-feedback">Please input address.</div> --}}
                           @error('address')
                           <div id="addressHelp" class="form-text">{{ $message }}</div>

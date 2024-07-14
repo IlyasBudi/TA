@@ -7,6 +7,7 @@
   <title>Po Haryanto Pariwisata | @yield('title')</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
+  <meta name="csrf-token" content="{{ csrf_token() }}">
 
   <!-- Favicons -->
   <link href="{{ asset('/penyewatemplate') }}/assets/img/favicon.png" rel="icon">
@@ -91,8 +92,8 @@
   <script src="{{ asset('/penyewatemplate') }}/assets/js/main.js"></script>
   @stack('before-script')
   @stack('after-script')
-  <script src="https://code.jquery.com/jquery-3.6.4.slim.js"
-        integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script>
+  {{-- <script src="https://code.jquery.com/jquery-3.6.4.slim.js"
+        integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script> --}}
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -34,20 +34,18 @@
     </style>
 @endpush
 
-@section('header')
+@section('content')
     <div class="pagetitle">
-        <h1>Dashboard</h1>
+        <h1>Tambah Kantor Cabang</h1>
         <nav>
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/staff/dashboard">Dashboard</a></li>
-            <li class="breadcrumb-item"><a href="/staff/kantorcabang">Kantor Cabang</li>
-            <li class="breadcrumb-item active">Tambah Kantor Cabang</li>
-        </ol>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/staff/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/staff/kantorcabang">Kantor Cabang</a></li>
+                <li class="breadcrumb-item active">Tambah Kantor Cabang</li>
+            </ol>
         </nav>
     </div><!-- End Page Title -->
-@endsection
 
-@section('content')
     <section class="section">
         <div class="row">
             <div class="col-lg-12">
@@ -83,7 +81,7 @@
                                 @enderror
                             </div> --}}
                             <div class="row mb-3">
-                                <label for="address" class="col-sm-2 col-form-label">Alamat kantor Cabang</label>
+                                <label for="address" class="col-sm-2 col-form-label">Alamat Kantor Cabang</label>
                                 <div class="col-sm-10">
                                     <input type="text" class="form-control @error('address') is-invalid @enderror"
                                         name="address">
@@ -169,7 +167,7 @@
         // Untuk nilai dari latitude longitude bisa disesuaikan dengan lokasi yang di inginkan 
         // nilai latitude dan longitude bisa di ambil dari google map
         var map = L.map('map', {
-            center: [-6.2231158846364485, 106.6428684922106],
+            center: [-6.223011844553948, 106.6428825914336],
             zoom: 18,
             // maxZoom: 24,
             layers: [streets]
@@ -200,7 +198,7 @@
 
         // set koordinat lokasi ke dalam curLocation yang mana nilai dari curLocation juga akan
         // digunakan untuk menampilkan marker pada map
-        var curLocation = [-6.2231158846364485, 106.6428684922106];
+        var curLocation = [-6.223011844553948, 106.6428825914336];
         map.attributionControl.setPrefix(false);
 
         var marker = new L.marker(curLocation, {

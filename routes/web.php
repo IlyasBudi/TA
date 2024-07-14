@@ -109,3 +109,7 @@ Route::get('/', [PenyewaController::class, 'landingpage']);
 Route::get('/about', [PenyewaController::class, 'about']);
 Route::get('/bookingpage', [PenyewaController::class, 'bookingpage']);
 Route::get('/kantorcabang/{id}', [PenyewaController::class, 'detailkantorcabang']);
+
+
+// web.php
+Route::post('/kantorcabang/data', [PenyewaController::class, 'getData']);

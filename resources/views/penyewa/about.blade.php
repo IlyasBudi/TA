@@ -10,8 +10,8 @@
           <div class="container">
             <div class="row d-flex justify-content-center text-center">
               <div class="col-lg-8">
-                <h1>Services Details</h1>
-                <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
+                <h1>About Us</h1>
+                <p class="mb-0">Gambaran Umum PT Haryanto Motor Indonesia.</p>
               </div>
             </div>
           </div>
@@ -83,7 +83,7 @@
               </p>
               <h3>Ciri Khas PO Haryanto</h3>
               <p>
-                Haryanto dikenal dengan penggunaan skema warna bodi bus yang beragam dan meriah, serta mengangkat potensi pariwisata Kudus. Masjid Menara Kudus menjadi ikon dari bus-bus Haryanto, ditempel pada bodi samping bus. Rian Mahendra selaku Direktur Operasional (pada waktu itu) mengatakan bahwa dalam menjalankan bisnisnya, Haryanto memanfaatkan filosofi "ilmu langit", maksudnya "nilai-nilai keagamaan Islam dijadikan acuan dalam berbisnis (bus)". Untuk mewujudkan misi korporatnya itu, kaligrafi sholawat "ṣalā-llāhu ʿala Muḥammad" ditempel di seluruh armada bus Haryanto.
+                PO Haryanto dikenal dengan penggunaan skema warna bodi bus yang beragam dan meriah, serta mengangkat potensi pariwisata Kudus. Masjid Menara Kudus menjadi ikon dari bus-bus Haryanto, ditempel pada bodi samping bus. Rian Mahendra selaku Direktur Operasional (pada waktu itu) mengatakan bahwa dalam menjalankan bisnisnya, Haryanto memanfaatkan filosofi "ilmu langit", maksudnya "nilai-nilai keagamaan Islam dijadikan acuan dalam berbisnis (bus)". Untuk mewujudkan misi korporatnya itu, kaligrafi sholawat "ṣalā-llāhu ʿala Muḥammad" ditempel di seluruh armada bus Haryanto.
 
                 Sebagian armada (khususnya armada keluaran 2018 keatas) juga dilengkapi dengan gambar wayang kulit, biasanya bergambar Werkudara atau Rama dan Sinta.
               </p>
@@ -106,13 +106,13 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>Kantor Cabang</h2>
-          <p>Kunjungi kantor cabang kami yang tersebar di berbagai lokasi untuk mendapatkan informasi lengkap terkait pemesanan kaca.</p>
+          <p>Kunjungi kantor cabang kami yang tersebar di berbagai lokasi untuk mendapatkan informasi lengkap terkait pemesanan bus pariwisata.</p>
         </div><!-- End Section Title -->
   
         <div class="container">
-            @foreach ($kantorcabangs as $kantorcabang)
+            
           <div class="row gy-4">
-  
+            @foreach ($kantorcabangs as $kantorcabang)
             <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
               <article>
   
@@ -130,9 +130,9 @@
             </div><!-- End post list item -->
   
             
-  
+            @endforeach
           </div><!-- End recent posts list -->
-          @endforeach
+          
         </div>
   
     </section><!-- /Recent Posts Section -->

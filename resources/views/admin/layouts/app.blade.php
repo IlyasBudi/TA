@@ -9,8 +9,8 @@
         <meta content="" name="keywords">
       
         <!-- Favicons -->
-        <link href="{{ asset('/niceadmin') }}/assets/img/favicon.png" rel="icon">
-        <link href="{{ asset('/niceadmin') }}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+        <link href="{{ asset('/penyewatemplate') }}/assets/img/baru/icon-hr.svg" rel="icon">
+        <link href="{{ asset('/penyewatemplate') }}/assets/img/baru/icon-hr2.svg" rel="icon">
       
         <!-- Google Fonts -->
         <link href="https://fonts.gstatic.com" rel="preconnect">

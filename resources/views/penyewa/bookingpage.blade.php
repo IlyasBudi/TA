@@ -255,14 +255,17 @@
                     </div>
                     <div id="map" class="map"></div>
 
+                    {{-- <label class="label-form">Search Result</label>
+                    <input type="text" class="form-control" name="search-hasil" placeholder="" required> --}}
+
                     
                     
                     {{-- <div class="col-12">
                       <label class="label-form">Kategori Seat</label>
-                      <select name="category_bus_id" id='category_bus_id'>
+                      <select class="form-select" name="category_bus_id" id='category_bus_id'>
                         <option selected>Pilih Kategori</option>
-                        @foreach ($bus as $bus)
-                        <option value="{{ $bus->id }}">{{ $bus->name }}</option>
+                        @foreach ($categorybus as $categorybus)
+                        <option value="{{ $categorybus->id }}">{{ $categorybus->name }}</option>
                         @endforeach
                       </select>
                     </div> --}}
@@ -332,6 +335,7 @@
         'type': 'FeatureCollection',
         'features': [
           @foreach ($kantorcabang as $kantorcabang)
+
           {
             'type': 'Feature',
             'geometry': {
@@ -357,6 +361,7 @@
       // stores.features.forEach((store, i) => {
       //   store.properties.id = i;
       // });
+      
 
       /**
        * Wait until the map loads to make changes to the map.
@@ -564,10 +569,11 @@
           /* Assign the `item` class to each listing for styling. */
           listing.className = 'item';
           
-
+    
           /* Add the link to the individual listing created above. */
           const link = listing.appendChild(document.createElement('a'));
-          link.href = '/kantorcabang/{{ $kantorcabang->id }}';
+          link.href = `/bookingpage/${store.properties.id}`;
+          // link.href = `/kantorcabang/{{ $kantorcabang->id }}`;
           link.className = 'title';
           link.id = `link-${store.properties.id}`;
           link.innerHTML = `${store.properties.address}`;
@@ -616,6 +622,7 @@
                 } else {
                     console.error('Data tidak ditemukan');
                 }
+                // ..
                 });
               }
             }
@@ -658,6 +665,19 @@
     </script>
 
     <script>
-      
+      // Contoh: Misalkan nilai searchResult didapatkan dari sebuah proses atau fungsi
+      const searchResult = `${searchResult}`; // Nilai yang ingin ditampilkan
+
+      // Pilih elemen input berdasarkan nama
+      const searchInput = document.querySelector('input[name="search-hasil"]');
+
+      // Atur nilai input dengan searchResult
+      searchInput.value = searchResult;
+
+      document.addEventListener('DOMContentLoaded', (event) => {
+          const searchResult = `${searchResult}`; // Nilai yang ingin ditampilkan
+          const searchInput = document.querySelector('input[name="search-hasil"]');
+          searchInput.value = searchResult;
+      });
     </script>
 @endpush

@@ -1,6 +1,6 @@
 @extends('staff.layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Rekening')
 
 @section('header')
     <div class="pagetitle">

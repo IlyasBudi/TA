@@ -12,8 +12,8 @@
         <div class="container">
           <div class="row">
             <div class="col-lg-10">
-              <h2 data-aos="fade-up" data-aos-delay="100">Welcome to Our Website</h2>
-              <p data-aos="fade-up" data-aos-delay="200">We are team of talented designers making websites with Bootstrap</p>
+              <h2 data-aos="fade-up" data-aos-delay="100">Selamat Datang di PO Haryanto Pariwisata</h2>
+              <p data-aos="fade-up" data-aos-delay="200">Nikmati perjalanan yang nyaman dan mewah dengan layanan kelas atas dari kami.</p>
             </div>
             <div class="col-lg-5" data-aos="fade-up" data-aos-delay="300">
               <a class="hero-btn" href="/bookingpage">

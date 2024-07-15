@@ -10,8 +10,8 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{{ asset('/niceadmin') }}/assets/img/favicon.png" rel="icon">
-  <link href="{{ asset('/niceadmin') }}/assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="{{ asset('/penyewatemplate') }}/assets/img/baru/icon-hr.svg" rel="icon">
+  <link href="{{ asset('/penyewatemplate') }}/assets/img/baru/icon-hr2.svg" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -50,8 +50,8 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="assets/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">NiceAdmin</span>
+                  <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt="">
+                  
                 </a>
               </div><!-- End Logo -->
 
@@ -60,14 +60,15 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Create an Account</h5>
-                    <p class="text-center small">Enter your personal details to create account</p>
+                    {{-- <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt=""> --}}
+                    <h5 class="card-title text-center pb-0 fs-4">Buat Akun Baru</h5>
+                    <p class="text-center small">Masukan datamu untuk buat akun baru</p>
                   </div>
 
                   <form class="row g-3 needs-validation" method="POST" action="{{ route('do.penyewaregister') }}">
                     @csrf
                     <div class="col-12">
-                      <label for="yourName" class="form-label">Your Name</label>
+                      <label for="yourName" class="form-label">Nama</label>
                       <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required>
                       @error('name')
                       <div id="nameHelp" class="form-text">{{ $message }}</div>
@@ -75,7 +76,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Your Email</label>
+                      <label for="yourEmail" class="form-label">Email</label>
                       <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="yourEmail" required>
                       {{-- <div class="invalid-feedback">Please enter a valid Email adddress!</div> --}}
                       @error('email')
@@ -84,7 +85,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="phone_number" class="form-label">Telepon</label>
+                      <label for="phone_number" class="form-label">Nomor Telepon</label>
                       <div class="input-group has-validation">
                         
                         <input type="phone_number" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" required>
@@ -136,7 +137,7 @@
                       <button class="btn btn-primary w-100" type="submit">Create Account</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Already have an account? <a href="/login">Log in</a></p>
+                      <p class="small mb-0">Sudah punya akun? <a href="/login">Log in</a></p>
                     </div>
                   </form>
 

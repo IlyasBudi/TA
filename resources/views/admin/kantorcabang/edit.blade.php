@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Kantor Cabang')
 
 @push('before-style')
     <!-- pada section styles menambahkan style css untuk menampilkan plugin leaflet  -->

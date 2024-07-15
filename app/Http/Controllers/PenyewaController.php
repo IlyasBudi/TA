@@ -81,5 +81,11 @@ class PenyewaController extends Controller
         return response()->json(['success' => false], 404);
     }
 
+    public function bookingPageId($id)
+    {
+        // $bus = bus::all();
+        $kantorcabang = kantor_cabang::with('bus','destination' , 'staff')->findOrFail($id);
+        return view('penyewa.bookingpage', ['kantorcabang' => $kantorcabang]);
+    }
 
 }

@@ -37,12 +37,12 @@
         </a>
       </li><!-- End Register Page Nav -->
 
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-login.html">
-          <i class="bi bi-box-arrow-in-right"></i>
-          <span>Login</span>
+      {{-- <li class="nav-item">
+        <a class="nav-link collapsed" href="/staff/profile">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Profile</span>
         </a>
-      </li><!-- End Login Page Nav -->
+      </li><!-- End Login Page Nav --> --}}
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-error-404.html">

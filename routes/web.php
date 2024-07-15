@@ -8,7 +8,7 @@ use App\Http\Controllers\DestinasiController;
 use App\Http\Controllers\RekeningController;
 use App\http\Controllers\AdminController;
 use App\http\Controllers\PenyewaController;
-// use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\KantorCabangController;
 
 /*
@@ -101,6 +101,9 @@ Route::prefix('/staff')->middleware('auth:staff')->group(
         Route::get('/rekening/{id}/edit', [RekeningController::class, 'edit']);
         Route::put('/rekening/{id}', [RekeningController::class, 'update']);
         Route::get('/rekening/{id}/delete', [RekeningController::class, 'destroy']);
+        // PROFILE
+        Route::get("/profile/{id}",[StaffController::class, "staffProfile"]);
+        Route::put("/profile/{id}", [StaffController::class, "staffUpdate"]);
     }
 );
 
@@ -108,6 +111,8 @@ Route::prefix('/staff')->middleware('auth:staff')->group(
 Route::get('/', [PenyewaController::class, 'landingpage']);
 Route::get('/about', [PenyewaController::class, 'about']);
 Route::get('/bookingpage', [PenyewaController::class, 'bookingpage']);
+// Route::get('/bookingpage', [PenyewaController::class, 'bookingpage'])->middleware('auth');
+Route::get('/bookingpage/{id}', [PenyewaController::class, 'bookingPageId']);
 Route::get('/kantorcabang/{id}', [PenyewaController::class, 'detailkantorcabang']);
 
 

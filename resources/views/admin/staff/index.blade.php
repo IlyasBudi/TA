@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 
-@section('title', 'Dashboard')
+@section('title', 'Penyewa')
 
 @section('header')
     <div class="pagetitle">

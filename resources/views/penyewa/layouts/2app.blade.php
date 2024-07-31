@@ -36,12 +36,32 @@
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
 
+  {{-- <!-- Mapbox link -->
+  <link
+  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
+  rel="stylesheet"
+  />
+  <!-- Mapbox GL JS -->
+  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
+  <link
+  href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
+  rel="stylesheet"
+  />
+  <!-- Geocoder plugin -->
+  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1-dev/mapbox-gl-geocoder.min.js"></script>
+  <link
+  rel="stylesheet"
+  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1-dev/mapbox-gl-geocoder.css"
+  type="text/css"
+  />
+  <!-- Turf.js plugin -->
+  <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script> --}}
+
+  {{-- leaflet --}}
   <link href="{{ asset('v1/vendor/jquery-nice-select/css/nice-select.css') }}" rel="stylesheet">
   @stack('before-style')
   <link href="{{ asset('v1/css/style.css') }}" rel="stylesheet">
   @stack('after-style')
-
-  @yield('styles')
 
 </head>
 
@@ -64,6 +84,14 @@
   <!-- Preloader -->
   {{-- <div id="preloader"></div> --}}
 
+  <!-- Leaflet JS Files -->
+  <script src="{{ asset('v1/vendor/global/global.min.js') }}"></script>
+  <script src="{{ asset('v1/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
+  @stack('before-script')
+  <script src="{{ asset('v1/js/custom.min.js') }}"></script>
+  <script src="{{ asset('v1/js/dlabnav-init.js') }}"></script>
+  @stack('after-script')
+
   <!-- Vendor JS Files -->
   <script src="{{ asset('/penyewatemplate') }}/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="{{ asset('/penyewatemplate') }}/assets/vendor/php-email-form/validate.js"></script>
@@ -76,12 +104,8 @@
 
   <!-- Main JS File -->
   <script src="{{ asset('/penyewatemplate') }}/assets/js/main.js"></script>
-  <script src="{{ asset('v1/vendor/global/global.min.js') }}"></script>
-    <script src="{{ asset('v1/vendor/jquery-nice-select/js/jquery.nice-select.min.js') }}"></script>
-    @stack('before-scripts')
-    <script src="{{ asset('v1/js/custom.min.js') }}"></script>
-    <script src="{{ asset('v1/js/dlabnav-init.js') }}"></script>
-    @stack('after-scripts')
+
+  
   {{-- <script src="https://code.jquery.com/jquery-3.6.4.slim.js"
         integrity="sha256-dWvV84T6BhzO4vG6gWhsWVKVoa4lVmLnpBOZh/CAHU4=" crossorigin="anonymous"></script> --}}
 
@@ -97,8 +121,8 @@
         });
     });
   </script>
-  {{-- <script
+  <script
     src="https://code.jquery.com/jquery-3.7.1.min.js"
     integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
-    crossorigin="anonymous"></script> --}}
+    crossorigin="anonymous"></script>
 </body>

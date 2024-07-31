@@ -31,7 +31,9 @@ class KantorCabangController extends Controller
             'name' => 'required|string',
             'image' => 'required|mimes:jpg,jpeg,png|max:5120',
             'address' => 'required|string',
-            'location' => 'string',
+            // 'location' => 'string',
+            'longitude' => 'string',
+            'latitude' => 'string',
         ]);
 
         // menyimpan file image ke dalam storage
@@ -43,7 +45,9 @@ class KantorCabangController extends Controller
             'name' => $validated['name'],
             'image' => $saveImage['image'],
             'address' => $validated['address'],
-            'location' => $validated['location'],
+            'longitude' => $validated['longitude'],
+            'latitude' => $validated['latitude'],
+            // 'location' => $validated['location'],
             'staff_id' => $staff_id,
         ]);
 
@@ -70,7 +74,9 @@ class KantorCabangController extends Controller
             'name' => 'required|string',
             'image' => 'mimes:jpg,jpeg,png|max:5120',
             'address' => 'required|string',
-            'location' => 'string',
+            // 'location' => 'string',
+            'longitude' => 'required|string',
+            'latitude' => 'required|string',
         ]);
 
         if ($request->hasFile('image')) {
@@ -92,7 +98,9 @@ class KantorCabangController extends Controller
             'name' => $validated['name'],
             'image' => $newImage['image'],
             'address' => $validated['address'],
-            'location' => $validated['location'],
+            // 'location' => $validated['location'],
+            'longitude' => $validated['longitude'],
+            'latitude' => $validated['latitude'],
             'staff_id' => $staff_id,
         ]);
 

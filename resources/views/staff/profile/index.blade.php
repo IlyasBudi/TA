@@ -22,8 +22,8 @@
                 <div class="card">
                     <div class="card-body profile-card pt-4 d-flex flex-column align-items-center">
                         <h2>{{ $profile->name }}</h2>
-                        @if ($profile->kantorcabang)
-                            <h3>{{ $profile->kantorcabang->name }}</h3>
+                        @if ($profile->kantor_cabang)
+                            <h3>{{ $profile->kantor_cabang->name }}</h3>
                         @else
                             <h3>Belum Memiliki Kantor Cabang</h3>
                         @endif

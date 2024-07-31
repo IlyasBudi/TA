@@ -45,7 +45,7 @@
                                 </tr> --}}
                                 <tr>
                                     <th>Lokasi Kantor Cabang (Longitude & Latitude)</th>
-                                    <td>{{ $kantorcabang->location }}</td>
+                                    <td>{{ $kantorcabang->longitude }} , {{ $kantorcabang->latitude }}</td>
                                 </tr>
                                 <tr>
                                     <th>Alamat</th>

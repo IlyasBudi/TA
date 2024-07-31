@@ -20,18 +20,18 @@ class AdminSeeder extends Seeder
             'password' => Hash::make('password'),
     ]);
 
-        DB::table('category_buses')->insert([
+    DB::table('category_buses')->insert([
+        [
+            'name' => 'Big Bus Seat 46 2-2 Non Toilet',
+        ],
         [
             'name' => 'Big Bus Seat 50 2-2 Non Toilet',
         ],
         [
-            'name' => 'Big BusSeat 59 2-3 Non Toilet',
+            'name' => 'Big Bus Seat 59 2-3 Non Toilet',
         ],
         [
-            'name' => 'Seat 35/39 Konf 2-2',
-        ],
-        [
-            'name' => 'Seat 30 Konf 2-2',
+            'name' => 'Seat 30/35/39 2-2',
         ]
     ]);
     }

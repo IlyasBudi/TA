@@ -16,7 +16,9 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string ('address');
-            $table->string('location')->nullable(true);
+            // $table->string('location')->nullable(true);
+            $table->string('longitude');
+            $table->string('latitude');
             $table->foreignId('staff_id');
             $table->foreign('staff_id')->references('id')->on('staff')->onDelete('cascade');
             $table->timestamps();

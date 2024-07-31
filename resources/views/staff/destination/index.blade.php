@@ -30,9 +30,9 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Deskripsi</th>
+                                    {{-- <th scope="col">Deskripsi</th> --}}
                                     <th scope="col">Harga</th>
-                                    <th scope="col">Gambar</th>
+                                    {{-- <th scope="col">Gambar</th> --}}
                                     <th scope="col">Aksi</th>
                                 </tr>
                             </thead>
@@ -42,11 +42,11 @@
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         {{-- <td>{{ $bus->code }}</td> --}}
                                         <td>{{ $destination->name }}</td>
-                                        <td>{{ $destination->description }}</td>
+                                        {{-- <td>{{ $destination->description }}</td> --}}
                                         <td>{{ $destination->price }}</td>
-                                        <td><img src="{{ Storage::url($destination->image) }}" alt=""
+                                        {{-- <td><img src="{{ Storage::url($destination->image) }}" alt=""
                                                 style="height:40px; width:60px; object-fit: cover;">
-                                        </td>
+                                        </td> --}}
                                         <td><a href="/staff/destination/{{ $destination->id }}/edit" class="btn btn-warning"><i
                                                     class="bi bi-pencil-fill text-white"></i></a>
                                              <a href="/staff/destination/{{ $destination->id }}" class="btn btn-primary"><i

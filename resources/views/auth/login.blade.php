@@ -60,7 +60,7 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt="">
+                    <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/logo-hr.svg" alt="">
                     <h5 class="card-title text-center pb-0 fs-4">Selamat Datang Kembali</h5>
                     <p class="text-center small">Masukan datamu untuk melanjutkan perjalananmu</p>
                   </div>
@@ -95,8 +95,10 @@
                     <div class="col-12">
                       <button class="btn btn-primary w-100" type="submit">Login</button>
                     </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Belum punya akun? <a href="/penyewaregister">buat akun baru</a></p>
+                    <div class="col-12 text-center">
+                      <a class="small mb-0" href="{{ route('password.request') }}">Lupa Password?</a>
+                    
+                      <p class="small mb-0">Belum punya akun? <a href="{{ route('penyewaregister') }}">buat akun baru</a></p>
                     </div>
                   </form>
 
@@ -120,7 +122,7 @@
     </div>
   </main><!-- End #main -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  {{-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> --}}
 
   <!-- Vendor JS Files -->
   <script src="{{ asset('/niceadmin') }}/assets/vendor/apexcharts/apexcharts.min.js"></script>

@@ -46,7 +46,7 @@
               </p>
               <h4>- Location (Longitude, Latitude)</h4>
               <p>
-                {{ $kantorcabang->location }}
+                {{ $kantorcabang->longitude }} , {{ $kantorcabang->latitude }}
               </p>
             </div>
   
@@ -62,7 +62,7 @@
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
           <h2>bus</h2>
-          <p>Temukan destinasi populer di seluruh dunia dengan layanan kami dan nikmati pengalaman liburan yang tak terlupakan.</p>
+          {{-- <p>Temukan destinasi populer di seluruh dunia dengan layanan kami dan nikmati pengalaman liburan yang tak terlupakan.</p> --}}
         </div><!-- End Section Title -->
   
         <div class="container">

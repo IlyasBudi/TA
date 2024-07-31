@@ -50,7 +50,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt="">
+                  <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/logo-hr.svg" alt="">
                   
                 </a>
               </div><!-- End Logo -->
@@ -68,7 +68,7 @@
                   <form class="row g-3 needs-validation" method="POST" action="{{ route('do.penyewaregister') }}">
                     @csrf
                     <div class="col-12">
-                      <label for="yourName" class="form-label">Nama</label>
+                      <label for="name" class="form-label">Nama</label>
                       <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required>
                       @error('name')
                       <div id="nameHelp" class="form-text">{{ $message }}</div>
@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="col-12">
-                      <label for="yourEmail" class="form-label">Email</label>
+                      <label for="email" class="form-label">Email</label>
                       <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="yourEmail" required>
                       {{-- <div class="invalid-feedback">Please enter a valid Email adddress!</div> --}}
                       @error('email')
@@ -88,7 +88,7 @@
                       <label for="phone_number" class="form-label">Nomor Telepon</label>
                       <div class="input-group has-validation">
                         
-                        <input type="phone_number" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" required>
+                        <input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" required>
                         {{-- <div class="invalid-feedback">Please input phone number.</div> --}}
                         @error('phone_number')
                         <div id="phone_numberHelp" class="form-text">{{ $message }}</div>
@@ -97,15 +97,14 @@
                     </div>
 
                     <div class="col-12">
-                        <label for="phone_number" class="form-label">Alamat</label>
-                        <div class="input-group has-validation">
+                        <label for="address" class="form-label">Alamat</label>
                           
-                          <input type="address" name="addres" class="form-control @error('address') is-invalid @enderror" id="address" required>
+                          <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" required>
                           {{-- <div class="invalid-feedback">Please input address.</div> --}}
                           @error('address')
                           <div id="addressHelp" class="form-text">{{ $message }}</div>
                           @enderror
-                        </div>
+                       
                     </div>
 
                     <div class="col-12">
@@ -119,7 +118,7 @@
 
                     <div class="col-12">
                         <label for="yourPassword" class="form-label">Confirm Password</label>
-                        <input type="password_confirmation" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" required>
+                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" required>
                         {{-- <div class="invalid-feedback">Please enter your password!</div> --}}
                         @error('password_confirmation')
                         <div id="passwordConfirmationHelp" class="form-text">{{ $message }}</div>
@@ -134,10 +133,10 @@
                       </div>
                     </div> --}}
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Create Account</button>
+                      <button class="btn btn-primary w-100" type="submit">Daftar</button>
                     </div>
                     <div class="col-12">
-                      <p class="small mb-0">Sudah punya akun? <a href="/login">Log in</a></p>
+                      <p class="small mb-0">Sudah punya akun? <a href="{{ route('login') }}">Log in</a></p>
                     </div>
                   </form>
 
@@ -161,7 +160,7 @@
     </div>
   </main><!-- End #main -->
 
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  {{-- <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a> --}}
 
   <!-- Vendor JS Files -->
   <script src="{{ asset('/niceadmin') }}/assets/vendor/apexcharts/apexcharts.min.js"></script>

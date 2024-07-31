@@ -149,6 +149,7 @@
     </section>
 @endsection
 @push('after-scripts')
+    <script src="{{ asset('v1/vendor/select2/js/select2.full.min.js') }}"></script>
     <script>
         // membuat variabel untuk load attribute dan url pada map
         var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -269,7 +270,7 @@
         function addMarker() {
             var longitude = document.getElementById("longitude").value;
             var latitude = document.getElementById("latitude").value;
-            var latlngInput = latitude + "," + longitude;
+            var latlngInput = latitude + longitude;
             var latlngArray = latlngInput.split(","); // Assuming the input is in the format "latitude,longitude"
 
             if (latlngArray.length === 2) {

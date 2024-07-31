@@ -45,18 +45,25 @@
       </li><!-- End Login Page Nav --> --}}
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="pages-error-404.html">
-          <i class="bi bi-dash-circle"></i>
-          <span>Error 404</span>
+        <a class="nav-link collapsed" href="/staff/transaction">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Transaksi</span>
         </a>
       </li><!-- End Error 404 Page Nav -->
 
       <li class="nav-item">
         <a class="nav-link collapsed" href="pages-blank.html">
-          <i class="bi bi-file-earmark"></i>
-          <span>Blank</span>
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Laporan</span>
         </a>
       </li><!-- End Blank Page Nav -->
+
+      {{-- <li class="nav-item">
+        <a class="nav-link collapsed" href="pages-blank.html">
+          <i class="bi bi-menu-button-wide"></i>
+          <span>Laporan</span>
+        </a>
+      </li><!-- End Blank Page Nav --> --}}
 
     </ul>
 

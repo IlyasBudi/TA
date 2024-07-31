@@ -2910,7 +2910,7 @@ section,
   display: none;
   position: absolute;
   top: 100%; /* Membuat dropdown muncul tepat di bawah tombol Get Started */
-  left: 1140; /* Menjaga dropdown agar sejajar dengan sisi kiri tombol */
+  left: 1150; //Menjaga dropdown agar sejajar dengan sisi kiri tombol
   background-color: #f9f9f9;
   min-width: 160px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -3022,6 +3022,11 @@ section,
   font-weight: 500;
 }
 
+.text-form {
+  display: flex;
+  justify-content: flex-start;
+}
+
 .select-form {
   width: 100%;
   padding: 10px;
@@ -3031,6 +3036,19 @@ section,
   box-sizing: border-box;
 }
 
+.booking-submit {
+  /* display: flex;
+  justify-content: flex-start; */
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  padding: 8px 30px 10px 30px;
+  border-radius: 4px;
+  border: 0;
+}
+
+.booking-submit:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 10%);
+}
 
 
 /* BOOKING MAP */
@@ -3218,4 +3236,165 @@ a:hover {
 .mapboxgl-ctrl-geocoder > div {
   min-width: 100%;
   margin-left: 0;
+}
+
+/* Profile */
+/*--------------------------------------------------------------
+# Profile Details Section
+--------------------------------------------------------------*/
+
+.profile-details .service-box {
+  background-color: var(--surface-color);
+  padding: 20px;
+  box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.1);
+}
+
+.profile-details .service-box+.service-box {
+  margin-top: 30px;
+}
+
+.profile-details .service-box h4 {
+  font-size: 20px;
+  font-weight: 700;
+  border-bottom: 2px solid color-mix(in srgb, var(--default-color), transparent 92%);
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+
+.profile-details .services-list {
+  background-color: var(--surface-color);
+}
+
+.profile .services-list a {
+  color: color-mix(in srgb, var(--default-color), transparent 20%);
+  background-color: color-mix(in srgb, var(--default-color), transparent 96%);
+  display: flex;
+  align-items: center;
+  padding: 12px 15px;
+  margin-top: 15px;
+  transition: 0.3s;
+}
+
+.profile-details .services-list a:first-child {
+  margin-top: 0;
+}
+
+.profile-details .services-list a i {
+  font-size: 16px;
+  margin-right: 8px;
+  color: var(--accent-color);
+}
+
+.profile-details .services-list a.active {
+  color: var(--contrast-color);
+  background-color: var(--accent-color);
+}
+
+.profile-details .services-list a.active i {
+  color: var(--contrast-color);
+}
+
+.profile-details .services-list a:hover {
+  background-color: color-mix(in srgb, var(--accent-color), transparent 95%);
+  color: var(--accent-color);
+}
+
+.profile-details .download-catalog a {
+  color: var(--default-color);
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  transition: 0.3s;
+  border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
+}
+
+.profile-details .download-catalog a:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.profile-details .download-catalog a:last-child {
+  padding-bottom: 0;
+}
+
+.profile-details .download-catalog a i {
+  font-size: 24px;
+  margin-right: 8px;
+  color: var(--accent-color);
+}
+
+.profile-details .download-catalog a:hover {
+  color: var(--accent-color);
+}
+
+.profile-details .help-box {
+  background-color: var(--accent-color);
+  color: var(--contrast-color);
+  margin-top: 30px;
+  padding: 30px 15px;
+}
+
+.profile-details .help-box .help-icon {
+  font-size: 48px;
+}
+
+.profile-details .help-box h4,
+.profile-details .help-box a {
+  color: var(--contrast-color);
+}
+
+.profile-details .services-img {
+  margin-bottom: 20px;
+}
+
+.profile-details h1 {
+  /* padding-top: 20px; */
+  font-size: 30px;
+  font-weight: 800;
+  padding-bottom: 20px;
+  align-text: center
+}
+
+.h2-profile {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 26px;
+  font-weight: 700;
+  padding-top: 15px;
+}
+
+.p1-profile {
+  display: flex;
+  justify-content: flex-start;
+  font-size: 13px;
+
+}
+
+.span-profile {
+  text-align: justify;
+}
+
+.profile-details ul {
+  list-style: none;
+  padding: 0;
+  font-size: 15px;
+}
+
+.profile-details ul li {
+  padding: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.profile-details ul i {
+  font-size: 20px;
+  margin-right: 8px;
+  color: var(--accent-color);
+}
+
+.card-edit-profile {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

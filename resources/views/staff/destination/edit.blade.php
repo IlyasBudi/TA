@@ -40,7 +40,7 @@
                                     </div>
                                 @enderror
                             </div>
-                            <div class="row mb-3">
+                            {{-- <div class="row mb-3">
                                 <label for="description" class="col-sm-2 col-form-label">Deskripsi Destinasi</label>
                                 <div class="col-sm-10">
                                     <textarea class="form-control @error('description') is-invalid @enderror" style="height: 100px" name="description">{{ $destination->description }}</textarea>
@@ -50,7 +50,7 @@
                                         Deskripsi tidak boleh kosong
                                     </div>
                                 @enderror
-                            </div>
+                            </div> --}}
                             <div class="row mb-3">
                                 <label for="price" class="col-sm-2 col-form-label">Harga Destinasi</label>
                                 <div class="col-sm-10">
@@ -63,25 +63,14 @@
                                     </div>
                                 @enderror
                             </div>
+                            
                             {{-- <div class="row mb-3">
-                                <label for="stock" class="col-sm-2 col-form-label">Stok Destinasi</label>
-                                <div class="col-sm-10">
-                                    <input type="text" class="form-control @error('stock') is-invalid @enderror"
-                                        name="stock" value="{{ $destination->stock }}">
-                                </div>
-                                @error('stock')
-                                    <div class="invalid-feedback">
-                                        Alamat tidak boleh kosong
-                                    </div>
-                                @enderror
-                            </div> --}}
-                            <div class="row mb-3">
                                 <label for="image" class="col-sm-2 col-form-label">Gambar Destinasi</label>
                                 <div class="col-sm-10">
                                     <input class="form-control @error('image') is-invalid @enderror" type="file"
                                         name="image">
                                 </div>
-                            </div>
+                            </div> --}}
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Submit Button</label>
                                 <div class="col-sm-10">

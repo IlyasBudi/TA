@@ -3,681 +3,290 @@
 @section('title', 'Welcome')
 
 @push('before-style')
+    <!-- pada section styles menambahkan style css untuk menampilkan plugin leaflet  -->
+    <!-- {{-- cdn css leaflet  --}} -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+        integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+        crossorigin="" />
 
-  <link
-  href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700"
-  rel="stylesheet"
-  />
-  <!-- Mapbox GL JS -->
-  <script src="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.js"></script>
-  <link
-  href="https://api.tiles.mapbox.com/mapbox-gl-js/v3.3.0/mapbox-gl.css"
-  rel="stylesheet"
-  />
-  <!-- Geocoder plugin -->
-  <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1-dev/mapbox-gl-geocoder.min.js"></script>
-  <link
-  rel="stylesheet"
-  href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.1-dev/mapbox-gl-geocoder.css"
-  type="text/css"
-  />
-  <!-- Turf.js plugin -->
-  <script src="https://npmcdn.com/@turf/turf/turf.min.js"></script>
-  <style>
-  body {
-    color: #404040;
-    -webkit-font-smoothing: antialiased;
-  }
+    <!-- {{-- cdn js leaflet --}} -->
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+        integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+        crossorigin=""></script>
 
-  * {
-    box-sizing: border-box;
-  }
+    <!-- {{-- cdn leaflet fullscreen js dan css --}} -->
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
 
-  .sidebar-map {
-    /* position: relative; */
-    position: absolute;
-    /* width: 33.3333%; */
-    /* height: 100%; */
-    width: 30%;
-    height: 400px;
-    top: 0;
-    left: 0;
-    overflow: hidden;
-    border-right: 1px solid rgb(0 0 0 / 25%);
-  }
+    <!-- {{-- cdn leaflet search --}} -->
+    <link rel="stylesheet" href="{{ asset('css/leaflet-search.css') }}">
+    <script src="{{ asset('js/leaflet-search.js') }}"></script>
 
-  .pad2 {
-    padding: 20px;
-  }
+    <!-- cdn leafle current location -->
+    <script src="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/leaflet.locatecontrol@0.79.0/dist/L.Control.Locate.min.css" rel="stylesheet">
 
-  .map {
-    position: absolute;
-    left: 33.3333%;
-    width: 66.6666%;
-    top: 0;
-    bottom: 0;
-  }
-
-  
-
-  a {
-    color: #404040;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #101010;
-  }
-
-  .heading-map {
-    background: #fff;
-    border-bottom: 1px solid #eee;
-    min-height: 60px;
-    line-height: 60px;
-    padding: 0 10px;
-    background-color: #00853e;
-    color: #fff;
-  }
-
-  #heading-title-map {
-    font-size: 22px;
-    margin: 0;
-    font-weight: 400;
-    line-height: 20px;
-    padding: 20px 2px;
-  }
-
-  .listings {
-    height: 100%;
-    overflow: auto;
-    padding-bottom: 60px;
-  }
-
-  .listings .item {
-    border-bottom: 1px solid #eee;
-    padding: 10px;
-    text-decoration: none;
-  }
-
-  .listings .item:last-child {
-    border-bottom: none;
-  }
-
-  .listings .item .title {
-    display: block;
-    color: #00853e;
-    font-weight: 700;
-  }
-
-  .listings .item .title small {
-    font-weight: 400;
-  }
-
-  .listings .item.active .title,
-  .listings .item .title:hover {
-    color: #8cc63f;
-  }
-
-  .listings .item.active {
-    background-color: #f8f8f8;
-  }
-
-  ::-webkit-scrollbar {
-    width: 3px;
-    height: 3px;
-    border-left: 0;
-    background: rgb(0 0 0 / 10%);
-  }
-
-  ::-webkit-scrollbar-track {
-    background: none;
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: #00853e;
-    border-radius: 0;
-  }
-
-  .marker {
-    border: none;
-    cursor: pointer;
-    height: 56px;
-    width: 56px;
-    /* background-image: url('https://docs.mapbox.com/help/demos/gl-store-locator/marker.png'); */
-    background-image: url('{{ asset('assets/images/baru/marker.svg') }}');
-  }
-
-  /* Marker tweaks */
-  .mapboxgl-popup {
-    padding-bottom: 50px;
-  }
-
-  .mapboxgl-popup-close-button {
-    display: none;
-  }
-
-  .mapboxgl-popup-content {
-    font:
-      400 15px/22px 'Source Sans Pro',
-      'Helvetica Neue',
-      sans-serif;
-    padding: 0;
-    width: 180px;
-  }
-
-  .mapboxgl-popup-content h3 {
-    background: #91c949;
-    color: #fff;
-    margin: -15px 0 0;
-    padding: 10px;
-    border-radius: 3px 3px 0 0;
-    font-weight: 700;
-  }
-
-  .mapboxgl-popup-content h4 {
-    margin: 0;
-    padding: 10px;
-    font-weight: 400;
-  }
-
-  .mapboxgl-popup-content div {
-    padding: 10px;
-  }
-
-  .mapboxgl-popup-anchor-top > .mapboxgl-popup-content {
-    margin-top: 15px;
-  }
-
-  .mapboxgl-popup-anchor-top > .mapboxgl-popup-tip {
-    border-bottom-color: #91c949;
-  }
-
-  .mapboxgl-ctrl-geocoder {
-    border-radius: 0;
-    position: relative;
-    top: 0;
-    width: 800px;
-    margin-top: 0;
-    border: 0;
-  }
-
-  .mapboxgl-ctrl-geocoder > div {
-    min-width: 100%;
-    margin-left: 0;
-  }
-  </style>
+    <style>
+        #map {
+            height: 560px;
+            z-index: 0;
+        }
+    </style>
 @endpush
 
 @section('content')
     <!-- Page Title -->
     <div class="page-title" data-aos="fade">
         <div class="heading">
-          <div class="container">
+        <div class="container">
             <div class="row d-flex justify-content-center text-center">
-              <div class="col-lg-10">
+            <div class="col-lg-10">
                 <h1>Booking</h1>
-                <p class="mb-0">Odio et unde deleniti. Deserunt numquam exercitationem. Officiis quo odio sint voluptas consequatur ut a odio voluptatem. Sit dolorum debitis veritatis natus dolores. Quasi ratione sint. Sit quaerat ipsum dolorem.</p>
-              
-                <form class="booking-form" action="" method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="200">
-                  <div class="row gy-4">
+                <p class="mb-0">Selamat datang di halaman pemesanan kami. Kami siap menemani perjalanan Anda dengan kenyamanan dan keamanan.</p>
+            
+                <form class="booking-form" action="{{ route('booking') }}" method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="200">
+                @csrf
+                <div class="row gy-4">
 
                     <div class="col-12">
-                      <label class="label-form">Nama</label>
-                      <input type="text" name="name" class="form-control" placeholder="Nama" required>
+                        <label class="label-form">Destinasi</label>
+                        <select class="form-select" name="destination_id" id='destination_id'>
+                            <option selected>Pilih Destinasi</option>
+                            <option value="Jakarta - TM. Mini - Ancol">Jakarta - TM. Mini - Ancol</option>
+                            <option value="Bogor">Bogor</option>
+                            <option value="Bandung">Bandung</option>
+                            <option value="Pelabuhan Ratu">Pelabuhan Ratu</option>
+                            <option value="Tasik - Garut">Tasik - Garut</option>
+                            <option value="Cirebon">Cirebon</option>
+                            <option value="Tegal">Tegal</option>
+                            <option value="Pekalongan">Pekalongan</option>
+                            <option value="Semarang - Kudus">Semarang - Kudus</option>
+                            <option value="Jogja">Jogja</option>
+                            <option value="Dieng">Dieng</option>
+                            <option value="Malang">Malang</option>
+                            <option value="Bali">Bali</option>
+                            <option value="Lampung">Lampung</option>
+                            <option value="Palembang">Palembang</option>
+
+                            
+                        </select>
                     </div>
-    
-                    {{-- <div class="col-12 ">
-                      <label class="label-form">Nama</label>
-                      <input type="email" class="form-control" name="email" placeholder="Email" required="">
-                    </div> --}}
-    
+
                     <div class="col-12">
-                      <label class="label-form">Nomor Telepon</label>
-                      <input type="text" class="form-control" name="phone_number" placeholder="Nomor Telepon" required>
+                        <label class="label-form">Kategori Bus</label>
+                        <select class="form-select" name="category_bus_id" id='category_bus_id'>
+                            <option selected>Pilih Kategori</option>
+                            @foreach ($categorybus as $categorybus)
+                            <option value="{{ $categorybus->id }}">{{ $categorybus->name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="col-12">
-                      <label class="label-form">Tanggal Keberangkatan</label>
-                      <input type="date" class="form-control" name="departure-date" placeholder="Tanggal Keberangkatan" required>
+                        <label class="label-form">Tanggal Keberangkatan</label>
+                        <input type="date" class="form-control" name="departure_date" placeholder="Tanggal Keberangkatan" required>
                     </div>
 
                     <div class="col-12">
-                      <label class="label-form">Tanggal Kepulangan</label>
-                      <input type="date" class="form-control" name="arrival-date" placeholder="Tanggal Kepulangan" required>
+                        <label class="label-form">Tanggal Kepulangan</label>
+                        <input type="date" class="form-control" name="arrival_date" placeholder="Tanggal Kepulangan" required>
                     </div>
 
-                    <label class="label-form">Lokasi Keberangkatan</label>
-                    <div class="sidebar-map">
-                      <div class="heading-map">
-                        <h1 id="heading-title-map">Our locations</h1>
-                      </div>
-                      <div id="listings" class="listings"></div>
+                    <div class="col-12">
+                        <label class="label-form">Waktu Penjemputan</label>
+                        <input type="time" class="form-control" name="pickup_time" placeholder="Waktu Penjemputan" min="05:00" required>
                     </div>
-                    <div id="map" class="map"></div>
 
-                    {{-- <label class="label-form">Search Result</label>
-                    <input type="text" class="form-control" name="search-hasil" placeholder="" required> --}}
+                    <div class="col-12">
+                        {{-- <label class="label-form">Longitude</label> --}}
+                        <input type="text" class="form-control" id="longitude" name="longitude" disabled required>
+                    </div>
 
-                    
-                    
-                    {{-- <div class="col-12">
-                      <label class="label-form">Kategori Seat</label>
-                      <select class="form-select" name="category_bus_id" id='category_bus_id'>
-                        <option selected>Pilih Kategori</option>
-                        @foreach ($categorybus as $categorybus)
-                        <option value="{{ $categorybus->id }}">{{ $categorybus->name }}</option>
-                        @endforeach
-                      </select>
-                    </div> --}}
+                    <div class="col-12">
+                        {{-- <label class="label-form">Latitude</label> --}}
+                        <input type="text" class="form-control" id="latitude" name="latitude" disabled required>
+                    </div>
 
-                    {{-- <div class="col-12">
-                      <label class="label-form">Bus</label>
-                      <select name="bus_id" id='bus_id'>
-                        <option selected>Pilih Bus</option>
-                        @foreach ($bus as $bus)
-                        <option value="{{ $bus->id }}">{{ $bus->name }}</option>
-                        @endforeach
+                    <div class="col-12">
+                        <label for="location" class="label-form">Lokasi Keberangkatan</label>
+                        <p class="text-form">Klik lokasi pada map untuk menentukan titik Keberangkatan.</p>
+                        {{-- <div class="col-sm-10"> --}}
+                            <div id="map"></div>
+                        {{-- </div> --}}
+                    </div>
+
+                    <div class="col-12">
+                        <button class="booking-submit" type="submit">Submit</button>
                         
-                      </select>
-                    </div> --}}
-
-                    {{-- <div class="col-12">
-                      <label class="label-form">Bus</label>
-                      <select name="bus_id" id='bus_id'>
-                        <option selected>Pilih Bus</option>
-                        @foreach ($bus as $bus)
-                        <option value="{{ $bus->id }}">{{ $bus->name }}</option>
-                        @endforeach
-                      </select>
-                    </div> --}}
-    
+                    </div>
                     
-    
-                  </div>
+
+                    
+
+                </div>
                 </form>
 
-              </div>
             </div>
-          </div>
+            </div>
+        </div>
         </div>
         {{-- <nav class="breadcrumbs">
-          <div class="container">
+        <div class="container">
             <ol>
-              <li><a href="index.html">Home</a></li>
-              <li class="current">Services Details</li>
+            <li><a href="index.html">Home</a></li>
+            <li class="current">Services Details</li>
             </ol>
-          </div>
+        </div>
         </nav> --}}
     </div><!-- End Page Title -->
-    
 @endsection
 
-@push('after-script')
+
+@push('after-scripts')
+<script src="{{ asset('v1/vendor/select2/js/select2.full.min.js') }}"></script>
 <script>
-      mapboxgl.accessToken = 'pk.eyJ1IjoiaWx5YXMzMTciLCJhIjoiY2x4cTd2YXN6MHR2bzJqc2g5ZnJzbzBhcSJ9.4C6RKZ06Bi7b-l5tYqwfQg';
+    // membuat variabel untuk load attribute dan url pada map
+    var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
+        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+        mbUrl =
+        'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoiaWx5YXMzMTciLCJhIjoiY2x4cTd2YXN6MHR2bzJqc2g5ZnJzbzBhcSJ9.4C6RKZ06Bi7b-l5tYqwfQg';
 
-      /**
-       * Add the map to the page
-       */
-      const map = new mapboxgl.Map({
-        container: 'map',
-        style: 'mapbox://styles/mapbox/light-v11',
-        center: [106.6428825914336, -6.223011844553948],
-        // center: [106.6384, -6.1785], // tangerang
-        // center: [106.64246, -6.22345], //haryanto
-        // center: [-77.034084142948, 38.909671288923], //default mapbox
-        zoom: 14,
-        scrollZoom: true,
-        
-      });
-
-      const stores = {
-        'type': 'FeatureCollection',
-        'features': [
-          @foreach ($kantorcabang as $kantorcabang)
-
-          {
-            'type': 'Feature',
-            'geometry': {
-              'type': 'Point',
-              'coordinates': [{{  $kantorcabang->location }}]
-            },
-            'properties': {
-              'id': {{ $kantorcabang->id }},
-              'phoneFormatted': '{{ $kantorcabang->location }}',
-              'address': '{{ $kantorcabang->name }}',
-              'city': '{{ $kantorcabang->address }}',
-            }
-          },
-          @endforeach
-        ]
-      };
-
-      /**
-       * Assign a unique id to each store. You'll use this `id`
-       * later to associate each point on the map with a listing
-       * in the sidebar.
-       */
-      // stores.features.forEach((store, i) => {
-      //   store.properties.id = i;
-      // });
-      
-
-      /**
-       * Wait until the map loads to make changes to the map.
-       */
-      map.on('load', () => {
-        /**
-         * This is where your '.addLayer()' used to be, instead
-         * add only the source without styling a layer
-         */
-        map.addSource('places', {
-          'type': 'geojson',
-          'data': stores
+    // membuat var satellite, dark, dan streets agar layer map kita punya beberapa opsi tampilan yang bisa kita ubah 
+    var satellite = L.tileLayer(mbUrl, {
+            id: 'mapbox/satellite-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            attribution: mbAttr
+        }),
+        street1 = L.tileLayer('http://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}', {
+            subdomains: ['mt0', 'mt1', 'mt2', 'mt3'],
+            maxZoom: 20,
+            attribution: mbAttr
+        }),
+        streets = L.tileLayer(mbUrl, {
+            id: 'mapbox/streets-v11',
+            tileSize: 512,
+            zoomOffset: -1,
+            attribution: mbAttr
         });
 
-        /**
-         * Create a new MapboxGeocoder instance.
-         */
-        const geocoder = new MapboxGeocoder({
-          accessToken: mapboxgl.accessToken,
-          mapboxgl: mapboxgl,
-          marker: true,
-          // bbox: [106.339279, -6.362826, 106.748612, -5.9730956] //tangerang
-          bbox: [50.48739, -24.81795, 170.70420, 18.51626] //pulau jawa
-          // bbox: [-77.210763, 38.803367, -76.853675, 39.052643] //default mapbox
-        });
+    // mendefinisikan var map. Menambahkan opsi seperti center untuk menentukan latitude dan longitude,
+    // mengantur zoom map saat di load dan memuat layer yang di inginkan.
+    // Untuk nilai dari latitude longitude bisa disesuaikan dengan lokasi yang di inginkan 
+    // nilai latitude dan longitude bisa di ambil dari google map
+    var map = L.map('map', {
+        center: [-6.223011844553948, 106.6428825914336],
+        zoom: 18,
+        // maxZoom: 24,
+        layers: [streets]
+    });
 
-        /**
-         * Add all the things to the page:
-         * - The location listings on the side of the page
-         * - The search box (MapboxGeocoder) onto the map
-         * - The markers onto the map
-         */
-        buildLocationList(stores);
-        map.addControl(geocoder, 'top-left');
-        addMarkers();
+    // set baselayer yang ingin digunakan
+    var baseLayers = {
+        //"Grayscale": grayscale,
+        "Streets": streets,
+        "Streets2": street1
+    };
 
-        /**
-         * Listen for when a geocoder result is returned. When one is returned:
-         * - Calculate distances
-         * - Sort stores by distance
-         * - Rebuild the listings
-         * - Adjust the map camera
-         * - Open a popup for the closest store
-         * - Highlight the listing for the closest store.
-         */
-        geocoder.on('result', (event) => {
-          /* Get the coordinate of the search result */
-          const searchResult = event.result.geometry;
+    L.control.fullscreen({
+        position: 'bottomright'
+    }).addTo(map);
 
-          /**
-           * Calculate distances:
-           * For each store, use turf.disance to calculate the distance
-           * in miles between the searchResult and the store. Assign the
-           * calculated value to a property called `distance`.
-           */
-          const options = { units: 'miles' };
-          for (const store of stores.features) {
-            store.properties.distance = turf.distance(
-              searchResult,
-              store.geometry,
-              options
-            );
-          }
 
-          /**
-           * Sort stores by distance from closest to the `searchResult`
-           * to furthest.
-           */
-          stores.features.sort((a, b) => {
-            if (a.properties.distance > b.properties.distance) {
-              return 1;
-            }
-            if (a.properties.distance < b.properties.distance) {
-              return -1;
-            }
-            return 0; // a must be equal to b
-          });
+    // set overlayer yang ingin digunakan
+    // var overlays = {
+    //     "Streets": street1,
+    //     "Streets2": streets
+    // };
 
-          /**
-           * Rebuild the listings:
-           * Remove the existing listings and build the location
-           * list again using the newly sorted stores.
-           */
-          const listings = document.getElementById('listings');
-          while (listings.firstChild) {
-            listings.removeChild(listings.firstChild);
-          }
-          buildLocationList(stores);
+    // menambahkan baselayer dan overlays tadi ke dalam control dan di tampilkan ke tag map
+    // L.control.layers(baseLayers, overlays).addTo(map);
+    L.control.layers(baseLayers).addTo(map);
 
-          /* Open a popup for the closest store. */
-          createPopUp(stores.features[0]);
 
-          /** Highlight the listing for the closest store. */
-          const activeListing = document.getElementById(
-            `listing-${stores.features[0].properties.id}`
-          );
-          activeListing.classList.add('active');
+    // set koordinat lokasi ke dalam curLocation yang mana nilai dari curLocation juga akan
+    // digunakan untuk menampilkan marker pada map
+    var curLocation = [-6.223011844553948, 106.6428825914336];
+    map.attributionControl.setPrefix(false);
 
-          /**
-           * Adjust the map camera:
-           * Get a bbox that contains both the geocoder result and
-           * the closest store. Fit the bounds to that bbox.
-           */
-          const bbox = getBbox(stores, 0, searchResult);
-          map.fitBounds(bbox, {
-            padding: 100
-          });
-        });
-      });
+    var marker = new L.marker(curLocation, {
+        draggable: 'true',
+    });
+    map.addLayer(marker);
 
-      /**
-       * Using the coordinates (lng, lat) for
-       * (1) the search result and
-       * (2) the closest store
-       * construct a bbox that will contain both points
-       */
-      function getBbox(sortedStores, storeIdentifier, searchResult) {
-        const lats = [
-          sortedStores.features[storeIdentifier].geometry.coordinates[1],
-          searchResult.coordinates[1]
-        ];
-        const lons = [
-          sortedStores.features[storeIdentifier].geometry.coordinates[0],
-          searchResult.coordinates[0]
-        ];
-        const sortedLons = lons.sort((a, b) => {
-          if (a > b) {
-            return 1;
-          }
-          if (a.distance < b.distance) {
-            return -1;
-          }
-          return 0;
-        });
-        const sortedLats = lats.sort((a, b) => {
-          if (a > b) {
-            return 1;
-          }
-          if (a.distance < b.distance) {
-            return -1;
-          }
-          return 0;
-        });
-        return [
-          [sortedLons[0], sortedLats[0]],
-          [sortedLons[1], sortedLats[1]]
-        ];
-      }
+    // dan ketika marker tersebut di geser akan mendapatkan titik koordinat yaitu latitude  dan longitudenya
+    // lalu menambahkan titik koordinat tersebut ke dalam tag input dengan namenya location 
+    marker.on('dragend', function(event) {
+        var location = marker.getLatLng();
+        marker.setLatLng(location, {
+            draggable: 'true',
+        }).bindPopup(location).update();
 
-      /**
-       * Add a marker to the map for every store listing.
-       **/
-      function addMarkers() {
-        /* For each feature in the GeoJSON object above: */
-        for (const marker of stores.features) {
-          /* Create a div element for the marker. */
-          const el = document.createElement('div');
-          /* Assign a unique `id` to the marker. */
-          el.id = `marker-${marker.properties.id}`;
-          /* Assign the `marker` class to each marker for styling. */
-          el.className = 'marker';
+        $('#longitude').val(location.lng).keyup()
+        $('#latitude').val(location.lat).keyup()
+    });
 
-          /**
-           * Create a marker using the div element
-           * defined above and add it to the map.
-           **/
-          new mapboxgl.Marker(el, { offset: [0, -23] })
-            .setLngLat(marker.geometry.coordinates)
-            .addTo(map);
+    // selain itu dengan fungsi di bawah juga bisa mendapatkan nilai latitude dan longitude
+    // dengan cara klik lokasi pada map maka nilai latitude dan longitudenya juga akan
+    // langsung muncul pada input text location
 
-          /**
-           * Listen to the element and when it is clicked, do three things:
-           * 1. Fly to the point
-           * 2. Close all other popups and display popup for clicked store
-           * 3. Highlight listing in sidebar (and remove highlight for all other listings)
-           **/
-          el.addEventListener('click', (e) => {
-            flyToStore(marker);
-            createPopUp(marker);
-            const activeItem = document.getElementsByClassName('active');
-            e.stopPropagation();
-            if (activeItem[0]) {
-              activeItem[0].classList.remove('active');
-            }
-            const listing = document.getElementById(
-              `listing-${marker.properties.id}`
-            );
-            listing.classList.add('active');
-          });
+    var loclng = document.querySelector("[name=longitude]");
+    map.on("click", function(e) {
+        // var lat = e.latlng.lat;
+        var lng = e.latlng.lng;
+
+        if (!marker) {
+            marker = L.marker(e.latlng).addTo(map);
+        } else {
+            marker.setLatLng(e.latlng);
         }
-      }
+        loclng.value = lng;
+    });
 
-      /**
-       * Add a listing for each store to the sidebar.
-       **/
-      
-      function buildLocationList(stores) {
-        for (const store of stores.features) {
-          /* Add a new listing section to the sidebar. */
-          const listings = document.getElementById('listings');
-          const listing = listings.appendChild(document.createElement('div'));
-          /* Assign a unique `id` to the listing. */
-          listing.id = `listing-${store.properties.id}`;
-          // listing.id = `listing-${$kantorcabang_id}`;
-          /* Assign the `item` class to each listing for styling. */
-          listing.className = 'item';
-          
-    
-          /* Add the link to the individual listing created above. */
-          const link = listing.appendChild(document.createElement('a'));
-          link.href = `/bookingpage/${store.properties.id}`;
-          // link.href = `/kantorcabang/{{ $kantorcabang->id }}`;
-          link.className = 'title';
-          link.id = `link-${store.properties.id}`;
-          link.innerHTML = `${store.properties.address}`;
+    var loclat = document.querySelector("[name=latitude]");
+    map.on("click", function(e) {
+        var lat = e.latlng.lat;
+        // var lng = e.latlng.lng;
 
-          /* Add details to the individual listing. */
-          const details = listing.appendChild(document.createElement('div'));
-          details.innerHTML = `${store.properties.city}`;
-          if (store.properties.phone) {
-            details.innerHTML += ` &middot; ${store.properties.phoneFormatted}`;
-          }
-          if (store.properties.distance) {
-            const roundedDistance =
-              Math.round(store.properties.distance * 100) / 100;
-            details.innerHTML += `<div><strong>${roundedDistance} miles away</strong></div>`;
-          }
+        if (!marker) {
+            marker = L.marker(e.latlng).addTo(map);
+        } else {
+            marker.setLatLng(e.latlng);
+        }
+        loclat.value =lat;
+    });
+</script>
+<script>
+    var previousMarker = null;
+    //atau menambahkan latitude dan longitude secara manual di text input
+    //dengan mentrigger button addMarker()
 
-          /**
-           * Listen to the element and when it is clicked, do four things:
-           * 1. Update the `currentFeature` to the store associated with the clicked link
-           * 2. Fly to the point
-           * 3. Close all other popups and display popup for clicked store
-           * 4. Highlight listing in sidebar (and remove highlight for all other listings)
-           **/
-          link.addEventListener('click', function () {
-            for (const feature of stores.features) {
-              if (this.id === `link-${feature.properties.id}`) {
-                flyToStore(feature);
-                createPopUp(feature);
+    function addMarker() {
+        var longitude = document.getElementById("longitude").value;
+        var latitude = document.getElementById("latitude").value;
+        var latlngInput = latitude + "," + longitude;
+        var latlngArray = latlngInput.split(","); // Assuming the input is in the format "latitude,longitude"
 
-                // Kirim request AJAX ke server
-                fetch('/kantorcabang/data', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content') // CSRF token diperlukan oleh Laravel
-                    },
-                    body: JSON.stringify({ id: kantorcabang_id })
-                })
-                .then(response => response.json())
-                .then(data => {
-                console.log('Success:', data);
-                if (data.success) {
-                    // Contoh: Tampilkan nama kantor cabang
-                    document.getElementById('namaKantorCabang').innerText = data.data.nama;
-                    // Anda bisa menambahkan lebih banyak logika di sini untuk menampilkan data lainnya
-                } else {
-                    console.error('Data tidak ditemukan');
+        if (latlngArray.length === 2) {
+            var latitudeIn = parseFloat(latlngArray[0]);
+            var longitudeIn = parseFloat(latlngArray[1]);
+
+            if (!isNaN(latitudeIn) && !isNaN(longitudeIn)) {
+
+                // Hapus marker sebelumnya jika ada
+                if (previousMarker) {
+                    map.removeLayer(previousMarker);
                 }
-                // ..
-                });
-              }
+
+                var marker = L.marker([longitudeIn, latitudeIn]).addTo(map);
+                previousMarker = marker;
+                // console.log("Marker added at:", marker.getLatLng());
+            } else {
+                console.log("Invalid latitude or longitude.");
             }
-            const activeItem = document.getElementsByClassName('active');
-            if (activeItem[0]) {
-              activeItem[0].classList.remove('active');
-            }
-            this.parentNode.classList.add('active');
-            
-          });
+        } else {
+            console.log("Invalid input format. Please use the format 'latitude,longitude'.");
         }
-      }
-      
-
-      /**
-       * Use Mapbox GL JS's `flyTo` to move the camera smoothly
-       * a given center point.
-       **/
-      function flyToStore(currentFeature) {
-        map.flyTo({
-          center: currentFeature.geometry.coordinates,
-          zoom: 15
-        });
-      }
-
-      /**
-       * Create a Mapbox GL JS `Popup`.
-       **/
-      function createPopUp(currentFeature) {
-        const popUps = document.getElementsByClassName('mapboxgl-popup');
-        if (popUps[0]) popUps[0].remove();
-
-        const popup = new mapboxgl.Popup({ closeOnClick: false })
-          .setLngLat(currentFeature.geometry.coordinates)
-          .setHTML(
-            `<h3>Kantor Cabang</h3><h4>${currentFeature.properties.address}</h4>`
-          )
-          .addTo(map);
-      }
-    </script>
-
-    <script>
-      // Contoh: Misalkan nilai searchResult didapatkan dari sebuah proses atau fungsi
-      const searchResult = `${searchResult}`; // Nilai yang ingin ditampilkan
-
-      // Pilih elemen input berdasarkan nama
-      const searchInput = document.querySelector('input[name="search-hasil"]');
-
-      // Atur nilai input dengan searchResult
-      searchInput.value = searchResult;
-
-      document.addEventListener('DOMContentLoaded', (event) => {
-          const searchResult = `${searchResult}`; // Nilai yang ingin ditampilkan
-          const searchInput = document.querySelector('input[name="search-hasil"]');
-          searchInput.value = searchResult;
-      });
-    </script>
+    }
+</script>
 @endpush

@@ -33,15 +33,15 @@
                                     <th>Nama Destinasi</th>
                                     <td>{{ $destination->name }}</td>
                                 </tr>
-                                <tr>
+                                {{-- <tr>
                                     <th>Gambar Destinasi</th>
                                     <td><img src="{{ Storage::url($destination->image) }}" alt=""
                                             style="height:200px; width:220px; object-fit: cover;"></td>
-                                </tr>
-                                <tr>
+                                </tr> --}}
+                                {{-- <tr>
                                     <th>Deskripsi</th>
                                     <td>{{ $destination->description }}</td>
-                                </tr>
+                                </tr> --}}
                                 <tr>
                                     <th>Harga</th>
                                     <td>Rp{{ number_format($destination->price) }}</td>

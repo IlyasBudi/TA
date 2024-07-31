@@ -25,7 +25,9 @@ return new class extends Migration
             $table->integer('total_price');
             $table->integer('extra_charge');
             $table->string('transaction_status');
-            $table->string('location')->nullable(true);
+            // $table->string('location')->nullable(true);
+            $table->string('longitude');
+            $table->string('latitude');
             $table->date('departure_date');
             $table->date('return_date');
             $table->integer('down_payment');

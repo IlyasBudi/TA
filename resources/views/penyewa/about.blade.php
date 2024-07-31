@@ -65,7 +65,7 @@
   
             <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
             <h1>PT HARYANTO MOTOR INDONESIA</h1>
-              <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt="" class="img-fluid services-img">
+              <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/logo-hr.svg" alt="" class="img-fluid services-img">
               <h3>Sejarah PO Haryanto</h3>
               <p>
                 PO Haryanto didirikan pada tahun 2002 oleh H. Haryanto asal Kudus, Jawa Tengah setelah purna bertugas di Batalyon Artileri Pertahanan Udara Ringan 1/Kostrad TNI Angkatan Darat di Tangerang. Sebelumnya, ia adalah seorang tentara yang memiliki berbagai pekerjaan sampingan, salah satunya adalah agen tiket bus.

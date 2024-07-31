@@ -90,7 +90,7 @@
                     </div>
                 </div><!-- End Revenue Card -->
     
-                <!-- Customers Card -->
+                {{-- <!-- Customers Card -->
                 <div class="col-xxl-4 col-xl-12">
     
                     <div class="card info-card customers-card">
@@ -125,7 +125,7 @@
                     </div>
                     </div>
     
-                </div><!-- End Customers Card -->
+                </div><!-- End Customers Card --> --}}
                 </div>
             </div>
         </div>

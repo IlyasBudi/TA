@@ -1,0 +1,59 @@
+@extends('admin.layouts.app')
+
+@section('title', 'Transaction')
+
+@section('content')
+    <div class="pagetitle">
+        <h1>Data Transaksi</h1>
+        <nav>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/admin/dashboard">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/admin/transaction">Transaksi</a></li>
+                <li class="breadcrumb-item active">Data Transaksi</li>
+            </ol>
+        </nav>
+    </div><!-- End Page Title -->
+
+    <section class="section">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Transaksi</h5>
+                        <!-- Table with stripped rows -->
+                        <table class="table datatable">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Kode Transaksi</th>
+                                    <th scope="col">Penyewa</th>
+                                    <th scope="col">Category Bus</th>
+                                    <th scope="col">Departure - Arrival Date</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($transaction as $item)
+                                    <tr>
+                                        <th scope="row">{{ $loop->iteration }}</th>
+                                        <td>{{ $item->code }}</td>
+                                        <td>{{ $item->user->name }}</td>
+                                        {{-- <td>{{ $item->categorybus_id->name }}</td> --}}
+                                        <td>{{ $item->departure_date }}</td>
+                                        <td>{{ $item->created_at }}</td>
+                                        <td><a href=""
+                                                class="btn btn-primary"><i class="bi bi-eye-fill text-white"></i></a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                        <!-- End Table with stripped rows -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+@endsection

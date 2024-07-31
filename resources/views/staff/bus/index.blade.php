@@ -31,7 +31,7 @@
                                     <th scope="col">#</th>
                                     {{-- <th scope="col">Kode Bus</th> --}}
                                     <th scope="col">Nama Bus</th>
-                                    <th scope="col">Category Seat</th>
+                                    <th scope="col">Category Bus</th>
                                     <th scope="col">Deskripsi</th>
                                     <th scope="col">Gambar Bus</th>
                                     <th scope="col">Harga</th>
@@ -47,10 +47,10 @@
                                         <td>{{ $bus->name }}</td>
                                         <td>{{ $bus->category_bus->name }}</td>
                                         <td>{{ $bus->description }}</td>
-                                        <td>{{ $bus->price }}</td>
                                         <td><img src="{{ Storage::url($bus->image) }}" alt=""
                                                 style="height:40px; width:60px; object-fit: cover;">
                                         </td>
+                                        <td>{{ $bus->price }}</td>
                                         <td>{{ $bus->status }}</td>
                                         <td><a href="/staff/bus/{{ $bus->id }}/edit" class="btn btn-warning"><i
                                                     class="bi bi-pencil-fill text-white"></i></a>

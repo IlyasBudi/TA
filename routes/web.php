@@ -1,6 +1,5 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BusController;
@@ -10,6 +9,20 @@ use App\http\Controllers\AdminController;
 use App\http\Controllers\PenyewaController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\KantorCabangController;
+use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\StaffTransactionController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\BookingController;
+
+use Illuminate\Support\Facades\Route;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
+use App\Models\Admin;
+use App\Models\Staff;
+use App\Models\User;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,16 +48,83 @@ Route::get('/staffregister', [AuthController::class, "staffregister"])->name('st
 Route::post('/penyewaregister', [AuthController::class, "dopenyewaregister"])->name('do.penyewaregister');
 Route::post('/staffregister', [AuthController::class, "dostaffregister"])->name('do.staffregister');
 
+Route::get('/forgot-password', function () {
+    return view('auth.forgot-password');
+})->middleware('guest')->name('password.request');
 
-// Route::get('/', [PageController::class, 'user']);
-// // user
-// Route::middleware(['auth:web'])->group(
-//     function () {
-//         // isi disini routing yang cuma bisa diakses oleh user
-//         // contoh penulisan
-//         Route::get('/welcome', [PageController::class, 'user']);
-//     }
-// );
+Route::post('/forgot-password', function (Request $request) {
+    $request->validate(['email' => 'required|email']);
+
+    $user = User::where('email', $request->email)->first();
+    $admin = Admin::where('email', $request->email)->first();
+    $staff = staff::where('email', $request->email)->first();
+
+    if ($user) {
+        $status = Password::sendResetLink(
+            $request->only('email')
+        );
+    } elseif ($staff) {
+        $status = Password::broker('staff')->sendResetLink(
+            $request->only('email')
+        );
+    } else {
+        $status = Password::INVALID_USER;
+    }
+
+    return $status === Password::RESET_LINK_SENT
+        ? back()->with(['status' => __($status)])
+        : back()->withErrors(['email' => __($status)]);
+})->middleware('guest')->name('password.email');
+
+Route::get('/reset-password/{token}', function (string $token) {
+    return view('auth.reset-password', ['token' => $token]);
+})->middleware('guest')->name('password.reset');
+
+Route::post('/reset-password', function (Request $request) {
+    $request->validate([
+        'token' => 'required',
+        'email' => 'required|email',
+        'password' => 'required|min:8|confirmed',
+    ]);
+
+    $user = User::where('email', $request->email)->first();
+    $admin = Admin::where('email', $request->email)->first();
+    $staff = staff::where('email', $request->email)->first();
+
+    if ($user) {
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (User $user, string $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+    } elseif ($staff) {
+        $status = Password::broker('staff')->reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function (staff $staff, string $password) {
+                $staff->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $staff->save();
+
+                event(new PasswordReset($staff));
+            }
+        );
+    } else {
+        $status = Password::INVALID_USER;
+    }
+
+    return $status === Password::PASSWORD_RESET
+        ? redirect()->route('login')->with('status', __($status))
+        : back()->withErrors(['email' => [__($status)]]);
+})->middleware('guest')->name('password.update');
 
 // Admin
 Route::prefix('/admin')->middleware('auth:admin')->group(function () {
@@ -62,6 +142,8 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
         Route::get('/kantorcabang/destination/{id}', [AdminController::class, 'showDestination']);
         Route::get('/kantorcabang/{id}/edit', [AdminController::class, 'editKantorCabang']);
         Route::put('/kantorcabang/{id}', [AdminController::class, 'updateKantorCabang']);
+        // Transaksi
+        Route::get('/transaction', [TransactionController::class, 'transaction']);
     }
 );
 
@@ -101,9 +183,14 @@ Route::prefix('/staff')->middleware('auth:staff')->group(
         Route::get('/rekening/{id}/edit', [RekeningController::class, 'edit']);
         Route::put('/rekening/{id}', [RekeningController::class, 'update']);
         Route::get('/rekening/{id}/delete', [RekeningController::class, 'destroy']);
+        // Transaction
+        Route::get('/transaction', [StaffTransactionController::class, 'index']);
+
         // PROFILE
         Route::get("/profile/{id}",[StaffController::class, "staffProfile"]);
         Route::put("/profile/{id}", [StaffController::class, "staffUpdate"]);
+        
+        
     }
 );
 
@@ -112,9 +199,12 @@ Route::get('/', [PenyewaController::class, 'landingpage']);
 Route::get('/about', [PenyewaController::class, 'about']);
 Route::get('/bookingpage', [PenyewaController::class, 'bookingpage']);
 // Route::get('/bookingpage', [PenyewaController::class, 'bookingpage'])->middleware('auth');
-Route::get('/bookingpage/{id}', [PenyewaController::class, 'bookingPageId']);
 Route::get('/kantorcabang/{id}', [PenyewaController::class, 'detailkantorcabang']);
+Route::post('/booking', [BookingController::class, 'booking'])->name('booking');
 
-
-// web.php
-Route::post('/kantorcabang/data', [PenyewaController::class, 'getData']);
+Route::middleware('auth:web')->group(function () {
+    // Profile
+    Route::get('/profile/{id}', [ProfileController::class, 'profile']);
+    Route::get('/profile/{id}/edit', [ProfileController::class, 'editProfile']);
+    Route::put('/profile/{id}', [ProfileController::class, 'updateProfile']);
+});

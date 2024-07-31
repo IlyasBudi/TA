@@ -24,6 +24,12 @@
                     <div class="card-body">
                         <h5 class="card-title">Tambah Rekening</h5>
 
+                        @if ($errors->has('error'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
+
                         <!-- General Form Elements -->
                         <form action="/staff/rekening" method="POST" enctype="multipart/form-data">
                             @csrf

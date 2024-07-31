@@ -7,6 +7,9 @@ use App\Models\bus;
 use App\Models\destination;
 use App\Models\user;
 use App\Models\kantor_cabang;
+use App\Models\transaction;
+use App\Models\detail_transaction;
+use App\Models\booking;
 use Illuminate\Http\Request;
 use Illuminate\support\Facades\Storage;
 
@@ -82,7 +85,9 @@ class AdminController extends Controller
             'name' => 'string',
             'image' => 'string',
             'address' => 'string',
-            'location' => 'string',
+            // 'location' => 'string',
+            'longitude' => 'string',
+            'latitude' => 'string',
         ]);
 
         if ($request->hasFile('image')) {
@@ -100,11 +105,20 @@ class AdminController extends Controller
             "name" => $validated["name"],
             "image" => $newImage["image"],
             "address" => $validated["address"],
-            "location" => $validated["location"],
+            // "location" => $validated["location"],
+            'longitude' => $validated['longitude'],
+            'latitude' => $validated['latitude'],
             "staff_id" => $staff_id,
         ]);
 
         return redirect('admin/kantorcabang');
+    }
+
+    public function transaction()
+    {
+        $transaction = booking::with(['user'])->get();
+
+        return view('admin.transaction.index', compact('transaction'));
     }
 
 

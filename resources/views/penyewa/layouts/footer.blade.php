@@ -4,7 +4,7 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-12 footer-about">
           <a href="/" class="logo d-flex align-items-center">
-            <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt="">
+            <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/logo-hr.svg" alt="">
             {{-- <span class="sitename">Append</span> --}}
           </a>
           <p>PO Haryanto adalah sebuah perusahaan bus antarkota dan pariwisata yang berasal dari Kabupaten Kudus, Jawa Tengah.</p>
@@ -40,7 +40,7 @@
           {{-- <p>New York, NY 535022</p>
           <p>United States</p> --}}
           <p class="mt-4"><strong>Phone:</strong> <span>+62 858 3663 6676</span></p>
-          <p><strong>Email:</strong> <span>info@example.com</span></p>
+          <p><strong>Email:</strong> <span>poharyantowisata@gmail.com</span></p>
         </div>
 
       </div>

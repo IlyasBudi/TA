@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('destinations', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('description')->nullable();
-            $table->string('image')->nullable();
+            // $table->longText('description')->nullable();
+            // $table->string('image')->nullable();
             $table->integer('price');
             $table->foreignId('kantor_cabang_id');
             $table->foreign('kantor_cabang_id')->references('id')->on('kantor_cabangs')->onDelete('cascade');

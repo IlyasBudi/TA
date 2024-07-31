@@ -13,8 +13,8 @@ class PenyewaController extends Controller
 {
     public function landingpage()
     {
-        
-        return view("penyewa.landingpage");
+        $kantorcabangs = kantor_cabang::all();
+        return view("penyewa.landingpage", ["kantorcabangs" => $kantorcabangs]);
     }
 
     public function about()
@@ -36,11 +36,12 @@ class PenyewaController extends Controller
         // $kantorcabang_id = kantor_cabang::where('id', $id)->first()->id;
         $kantorcabang = kantor_cabang::all();
         $categorybus = category_bus::all();
+        $destination = destination::all();
         // $categorybus_id = category_bus::where('id', $id)->first()->id;
         
         // $bus = bus::where('kantorcabang_id', $kantorcabang_id, 'categorybus_id', $categorybus_id, 'status', 'Tersedia')->get();
 
-        return view('penyewa.bookingpage', ['kantorcabang' => $kantorcabang, 'categorybus' => $categorybus]);
+        return view('penyewa.bookingpage', ['kantorcabang' => $kantorcabang, 'categorybus' => $categorybus, 'destination' => $destination]);
     }
 
 //     public function getBusesByCategoryAndStatus($categorybus_id, $status)

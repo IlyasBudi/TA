@@ -10,8 +10,8 @@ class category_bus extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'description',
-        'image',
+        // 'description',
+        // 'image',
         'price',
         'kantor_cabang_id',
     ];
@@ -24,5 +24,10 @@ class category_bus extends Model
     public function bus()
     {
         return $this->hasMany(bus::class);
+    }
+
+    public function booking()
+    {
+        return $this->hasMany(booking::class);
     }
 }

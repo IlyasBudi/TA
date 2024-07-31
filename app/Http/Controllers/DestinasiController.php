@@ -32,22 +32,21 @@ class DestinasiController extends Controller
         // dd($request->all());
         $validated = $request->validate([
             "name" => "required|string",
-            "description" => "required|string|max:65535",
+            // "description" => "required|string|max:65535",
             "price" => "required|integer",
-            "image" => "mimes:jpg, jpeg, png|max:10240",
+            // "image" => "mimes:jpg, jpeg, png|max:10240",
         ]);
 
         // $saveImage['image'] = Storage::putFile('public/image', $request->file('image'));
-        $saveImage['image'] = Storage::putFile('public/image', $request->file('image'));
 
         $staff_id = Auth::id();
         $kantorcabang_id = kantor_cabang::where("staff_id", $staff_id)->first()->id;
 
         destination::create([
             'name' => $validated['name'],
-            'description' => $validated['description'],
+            // 'description' => $validated['description'],
             'price' => $validated['price'],
-            'image' => $saveImage['image'],
+            // 'image' => $saveImage['image'],
             'kantor_cabang_id' => $kantorcabang_id,
         ]);
 
@@ -74,24 +73,24 @@ class DestinasiController extends Controller
 
         $validated = $request->validate([
             "name" => "required|string",
-            "description" => "required|string|max:65535",
+            // "description" => "required|string|max:65535",
             "price" => "required|integer",
-            "image" =>"mimes:jpg, jpeg, png|max:10240",
+            // "image" =>"mimes:jpg, jpeg, png|max:10240",
         ]);
 
-        if ($request->hasFile('image')) {
-            Storage::delete($destination->image);
+        // if ($request->hasFile('image')) {
+        //     Storage::delete($destination->image);
 
-            $newImage = ['image' => Storage::putFile('public/image', $request->file('image'))];
-        } else {
-            $newImage = ['image' => $destination->image];
-        }
+        //     $newImage = ['image' => Storage::putFile('public/image', $request->file('image'))];
+        // } else {
+        //     $newImage = ['image' => $destination->image];
+        // }
 
         $destination->update([
             "name" => $validated["name"],
-            "description" => $validated["description"],
+            // "description" => $validated["description"],
             "price" => $validated["price"],
-            "image" => $newImage["image"],
+            // "image" => $newImage["image"],
         ]);
 
         return redirect('/staff/destination');

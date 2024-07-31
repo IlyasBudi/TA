@@ -41,7 +41,7 @@
                                 @enderror
                             </div>
                             <div class="row mb-3">
-                                <label class="col-sm-2 col-form-label">Kategori Seat</label>
+                                <label class="col-sm-2 col-form-label">Category Bus</label>
                                 <div class="col-sm-10">
                                   <select class="form-select  @error('category_bus_id') is-invalid @enderror" aria-label="Default select example" name="category_bus_id" id='category_bus_id'>
                                     <option selected>Pilih Kategori</option>

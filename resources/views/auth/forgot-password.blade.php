@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Pages / Register - NiceAdmin Bootstrap Template</title>
+  <title>Lupa Password</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -50,7 +50,7 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="index.html" class="logo d-flex align-items-center w-auto">
-                  <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/logo-hr.svg" alt="">
+                  
                   
                 </a>
               </div><!-- End Logo -->
@@ -60,83 +60,49 @@
                 <div class="card-body">
 
                   <div class="pt-4 pb-2">
-                    <h5 class="card-title text-center pb-0 fs-4">Buat Akun Baru</h5>
-                    <p class="text-center small">Masukan datamu untuk buat akun baru</p>
+                    <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/logo-hr.svg" alt="">
+                    <h5 class="card-title text-center pb-0 fs-4">Lupa Password?</h5>
+                    <p class="text-center small">Masukan emailmu untuk perbarui password</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" method="POST" action="{{ route('do.staffregister') }}">
+                @if ($errors->any())
+                <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                </div>
+                @endif
+                @if (session()->has('status'))
+                    <div class="alert alert-success">
+                        {{ session()->get('status') }}
+                    </div>
+                @endif
+                  <form class="row g-3 needs-validation" method="POST" action="{{ route('password.email') }}">
                     @csrf
                     <div class="col-12">
-                      <label for="name" class="form-label">Nama</label>
-                      <input type="text" name="name" class="form-control @error('name') is-invalid @enderror" id="yourName" required>
-                      @error('name')
-                      <div id="nameHelp" class="form-text">{{ $message }}</div>
-                      @enderror
-                    </div>
-
-                    <div class="col-12">
-                      <label for="email" class="form-label">Email</label>
-                      <input type="email" name="email" class="form-control @error('email') is-invalid @enderror" id="yourEmail" required>
-                      {{-- <div class="invalid-feedback">Please enter a valid Email adddress!</div> --}}
-                      @error('email')
-                      <div id="emailHelp" class="form-text">{{ $message }}</div>
-                      @enderror
-                    </div>
-
-                    <div class="col-12">
-                      <label for="phone_number" class="form-label">Telepon</label>
+                      <label for="yourUsername" class="form-label">Email</label>
                       <div class="input-group has-validation">
-                        
-                        <input type="text" name="phone_number" class="form-control @error('phone_number') is-invalid @enderror" id="phone_number" required>
-                        {{-- <div class="invalid-feedback">Please input phone number.</div> --}}
-                        @error('phone_number')
-                        <div id="phone_numberHelp" class="form-text">{{ $message }}</div>
+                        {{-- <span class="input-group-text" id="inputGroupPrepend">@</span> --}}
+                        <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" id="email" required>
+                        @error('email')
+                        <div id="emailHelp" class="form-text">{{ $message }}</div>
                         @enderror
                       </div>
-                    </div>
-
-                    <div class="col-12">
-                        <label for="address" class="form-label">Alamat</label>
-                        <div class="input-group has-validation">
-                          
-                          <input type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" required>
-                          {{-- <div class="invalid-feedback">Please input address.</div> --}}
-                          @error('address')
-                          <div id="addressHelp" class="form-text">{{ $message }}</div>
-                          @enderror
-                        </div>
-                    </div>
-
-                    <div class="col-12">
-                      <label for="yourPassword" class="form-label">Password</label>
-                      <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="yourPassword" required>
-                      {{-- <div class="invalid-feedback">Please enter your password!</div> --}}
-                      @error('password')
-                      <div id="passwordHelp" class="form-text">{{ $message }}</div>
-                      @enderror
-                    </div>
-
-                    <div class="col-12">
-                        <label for="yourPassword" class="form-label">Confirm Password</label>
-                        <input type="password" name="password_confirmation" class="form-control @error('password_confirmation') is-invalid @enderror" id="password_confirmation" required>
-                        {{-- <div class="invalid-feedback">Please enter your password!</div> --}}
-                        @error('password_confirmation')
-                        <div id="passwordConfirmationHelp" class="form-text">{{ $message }}</div>
-                        @enderror
                     </div>
 
                     {{-- <div class="col-12">
                       <div class="form-check">
-                        <input class="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required>
-                        <label class="form-check-label" for="acceptTerms">I agree and accept the <a href="#">terms and conditions</a></label>
-                        <div class="invalid-feedback">You must agree before submitting.</div>
+                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
+                        <label class="form-check-label" for="rememberMe">Remember me</label>
                       </div>
                     </div> --}}
                     <div class="col-12">
-                      <button class="btn btn-primary w-100" type="submit">Buat Akun</button>
+                      <button class="btn btn-primary w-100" type="submit">Kirim Link</button>
                     </div>
-                    <div class="col-12">
-                      <p class="small mb-0">Sudah punya akun? <a href="{{ route('login') }}">Log in</a></p>
+                    <div class="col-12 text-center">
+                      <a href="{{ route('login') }}">Kembali ke Login</a>
                     </div>
                   </form>
 

@@ -98,7 +98,7 @@
   
           <div class="row gy-4 align-items-stretch justify-content-between features-item ">
             <div class="col-lg-6 d-flex align-items-center features-img-bg" data-aos="zoom-out">
-              <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/hw08-yudhistira.png" class="img-fluid" alt="">
+              <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/hw08-yudhistira.png" class="img-fluid" alt="">
             </div>
             <div class="col-lg-5 d-flex justify-content-center flex-column" data-aos="fade-up">
               <h3>BIG BUS Seat 46 2-2 Toilet</h3>
@@ -112,13 +112,13 @@
               <p>Capacity 59 Seat, Konf 2 - 3, Non Toilet, Full AC, Reclining Seat, TV, Radio, Karaoke, Charging port (Not Suitable for Powerbank), Bantal/Selimut, Extra Luggage, Emergency Door, APAR Ready, Glass Breaker, Ambient Light.</p>
             </div>
             <div class="col-lg-6 d-flex align-items-center features-img-bg" data-aos="zoom-out">
-                <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/hw19-satrio-piningit.png" class="img-fluid" alt="">
+                <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/hw19-satrio-piningit.png" class="img-fluid" alt="">
               </div>
           </div><!-- Features Item -->
 
           <div class="row gy-4 align-items-stretch justify-content-between features-item ">
             <div class="col-lg-6 d-flex align-items-center features-img-bg" data-aos="zoom-out">
-              <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/hw17-rengganis.png" class="img-fluid" alt="">
+              <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/hw17-rengganis.png" class="img-fluid" alt="">
             </div>
             <div class="col-lg-5 d-flex justify-content-center flex-column" data-aos="fade-up">
               <h3>BIG BUS Seat 50 2-2 Non Toilet</h3>
@@ -132,13 +132,49 @@
               <p>Capacity 35/39 Seat, Konf 2 - 2, Non Toilet, Full AC, Reclining Seat, Arm rest, Leg rest (Optional), TV, Radio, Karaoke, Charging port (Not Suitable for Powerbank), Bantal/Selimut, Extra Luggage, Emergency Door, APAR Ready, Glass Breaker, Ambient Light.</p>
             </div>
             <div class="col-lg-6 d-flex align-items-center features-img-bg" data-aos="zoom-out">
-                <img src="{{ asset('/landingpagetemplate') }}/assets/images/baru/md06.png" class="img-fluid" alt="">
+                <img src="{{ asset('/penyewatemplate') }}/assets/img/baru/md06.png" class="img-fluid" alt="">
               </div>
           </div><!-- Features Item -->
   
         </div>
   
     </section><!-- /Features Section -->
+
+    <section id="recent-posts" class="recent-posts section">
+
+      <!-- Section Title -->
+      <div class="container section-title" data-aos="fade-up">
+        <h2>Kantor Cabang</h2>
+        <p>Kunjungi kantor cabang kami yang tersebar di berbagai lokasi untuk mendapatkan informasi lengkap terkait pemesanan bus pariwisata.</p>
+      </div><!-- End Section Title -->
+
+      <div class="container">
+          
+        <div class="row gy-4">
+          @foreach ($kantorcabangs as $kantorcabang)
+          <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <article>
+
+              <div class="post-img">
+                <img src="{{ Storage::url($kantorcabang->image) }}" height="240" width="720" alt="" class="img-fluid">
+              </div>
+
+              <h2 class="title">
+                <a href="/kantorcabang/{{ $kantorcabang->id }}">{{ $kantorcabang->name }}</a>
+              </h2>
+
+              <p class="post-category">{{ $kantorcabang->address }}</p>
+
+            </article>
+          </div><!-- End post list item -->
+
+          
+          @endforeach
+        </div><!-- End recent posts list -->
+        
+      </div>
+
+    </section><!-- /Recent Posts Section -->
 
     <!-- Recent Posts Section -->
     <section id="recent-posts" class="recent-posts section">

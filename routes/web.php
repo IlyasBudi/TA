@@ -197,7 +197,7 @@ Route::prefix('/staff')->middleware('auth:staff')->group(
 // Penyewa
 Route::get('/', [PenyewaController::class, 'landingpage']);
 Route::get('/about', [PenyewaController::class, 'about']);
-Route::get('/bookingpage', [PenyewaController::class, 'bookingpage']);
+Route::get('/bookingpage', [BookingController::class, 'bookingpage']);
 // Route::get('/bookingpage', [PenyewaController::class, 'bookingpage'])->middleware('auth');
 Route::get('/kantorcabang/{id}', [PenyewaController::class, 'detailkantorcabang']);
 Route::post('/booking', [BookingController::class, 'booking'])->name('booking');

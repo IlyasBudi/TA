@@ -12,15 +12,10 @@ class TransactionController extends Controller
 {
     public function transaction()
     {
-        $transaction = booking::with(['user', 'destination', 'category_bus'])->get();
+        $transaction = booking::with(['user', 'category_bus'])->get();
 
         return view('admin.transaction.index', compact('transaction'));
     }
 
-    public function show(booking $transaction)
-    {
-        $details = $transaction->detail_transactions()->get();
-
-        return view("admin.transaction.show", compact("transaction", "details"));
-    }
+    
 }

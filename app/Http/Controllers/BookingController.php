@@ -14,6 +14,13 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
+    public function bookingpage()
+    {
+        $categorybus = category_bus::all();
+
+        return view('penyewa.bookingpage', ['categorybus' => $categorybus]);
+    }
+
     public function booking(Request $request)
     {
         $code = 'TRANS-' . mt_rand(000, 999);
@@ -22,8 +29,8 @@ class BookingController extends Controller
             // 'code' => 'required',
             'admin_id' => 'required',
             'user_id' => 'required',
-            'destination_id' => 'required',
             'category_bus_id' => 'required',
+            'destination' => 'required',
             'departure_date' => 'required',
             'arrival_date' => 'required',
             'pickup_time' => 'required',
@@ -38,8 +45,8 @@ class BookingController extends Controller
             'code' => $code,
             'admin_id' => $admin_id,
             'user_id' => $user_id,
-            'destination_id' => $validated['destination_id'],
             'category_bus_id' => $validated['category_bus_id'],
+            'destination' => $validated['destination'],
             'departure_date' => $validated['departure_date'],
             'arrival_date' => $validated['arrival_date'],
             'pickup_time' => $validated['pickup_time'],

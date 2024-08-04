@@ -48,6 +48,10 @@
                                     <td>{{ $kantorcabang->longitude }} , {{ $kantorcabang->latitude }}</td>
                                 </tr>
                                 <tr>
+                                    <th>Nomor Telepon</th>
+                                    <td>{{ $kantorcabang->phone_number }}</td>
+                                </tr>
+                                <tr>
                                     <th>Alamat</th>
                                     <td>{{ $kantorcabang->address }}</td>
                                 </tr>

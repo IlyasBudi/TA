@@ -1,6 +1,6 @@
 @extends('penyewa.layouts.app')
 
-@section('title', 'Welcome')
+@section('title', 'Detail Kantor Cabang')
 
 @section('content')
 
@@ -39,6 +39,10 @@
               <h4>- Nama</h4>
               <p>
                 {{ $kantorcabang->name }}
+              </p>
+              <h4>- Nomor Telepon</h4>
+              <p>
+                {{ $kantorcabang->phone_number }}
               </p>
               <h4>- Alamat</h4>
               <p>

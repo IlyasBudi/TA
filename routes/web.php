@@ -144,6 +144,7 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
         Route::put('/kantorcabang/{id}', [AdminController::class, 'updateKantorCabang']);
         // Transaksi
         Route::get('/transaction', [TransactionController::class, 'transaction']);
+        // Route::get('/transaction/{id}/delete', [TransactionController::class, 'destroy']);
     }
 );
 
@@ -197,10 +198,11 @@ Route::prefix('/staff')->middleware('auth:staff')->group(
 // Penyewa
 Route::get('/', [PenyewaController::class, 'landingpage']);
 Route::get('/about', [PenyewaController::class, 'about']);
+Route::get('/kantorcabang/{id}', [PenyewaController::class, 'detailkantorcabang']);
 Route::get('/bookingpage', [BookingController::class, 'bookingpage']);
 // Route::get('/bookingpage', [PenyewaController::class, 'bookingpage'])->middleware('auth');
-Route::get('/kantorcabang/{id}', [PenyewaController::class, 'detailkantorcabang']);
 Route::post('/booking', [BookingController::class, 'booking'])->name('booking');
+// Route::get('/success', [BookingController::class], 'success');
 
 Route::middleware('auth:web')->group(function () {
     // Profile

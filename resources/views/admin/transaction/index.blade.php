@@ -27,7 +27,7 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">Kode Transaksi</th>
-                                    <th scope="col">Penyewa</th>
+                                    <th scope="col">Nama Penyewa</th>
                                     <th scope="col">Category Bus</th>
                                     <th scope="col">Departure - Arrival Date</th>
                                     <th scope="col">Tanggal</th>
@@ -41,10 +41,12 @@
                                         <td>{{ $item->code }}</td>
                                         <td>{{ $item->user->name }}</td>
                                         {{-- <td>{{ $item->categorybus_id->name }}</td> --}}
-                                        <td>{{ $item->departure_date }}</td>
+                                        <td>{{ $item->departure_date }}|{{ $item->arrival_date }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td><a href=""
                                                 class="btn btn-primary"><i class="bi bi-eye-fill text-white"></i></a>
+                                                {{-- | <a href="/admin/transaction/{{ $item->id }}/delete" class="btn btn-danger"><i
+                                                    class="bi bi-trash3-fill text-white"></i></a> --}}
                                         </td>
                                     </tr>
                                 @endforeach

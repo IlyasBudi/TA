@@ -78,6 +78,10 @@
                                     </tr>
                                     <tr>
                                         <th>Alamat Lengkap Kantor Cabang</th>
+                                        <td>{{ $staff->kantor_cabang->phone_number }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Alamat Lengkap Kantor Cabang</th>
                                         <td>{{ $staff->kantor_cabang->address }}</td>
                                     </tr>
                                 @else

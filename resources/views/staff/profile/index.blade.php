@@ -65,8 +65,8 @@
 
                                 <div class="row">
                                     <div class="col-lg-3 col-md-4 label">Kantor Cabang</div>
-                                    @if ($profile->kantorcabang)
-                                        <div class="col-lg-9 col-md-8">{{ $profile->kantorcabang->name }}</div>
+                                    @if ($profile->kantor_cabang)
+                                        <div class="col-lg-9 col-md-8">{{ $profile->kantor_cabang->name }}</div>
                                     @else
                                         <div class="col-lg-9 col-md-8">Belum Memiliki Kantor Cabang</div>
                                     @endif

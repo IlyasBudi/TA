@@ -49,6 +49,10 @@
                                 </tr>
                                 <tr>
                                     <th>Alamat</th>
+                                    <td>{{ $kantorcabang->phone_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Alamat</th>
                                     <td>{{ $kantorcabang->address }}</td>
                                 </tr>
                             </tbody>

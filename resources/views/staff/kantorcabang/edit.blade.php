@@ -53,6 +53,15 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Edit Kantor Cabang</h5>
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
 
                         <!-- General Form Elements -->
                         <form action="/staff/kantorcabang/{{ $kantorcabang->id }}" method="POST" enctype="multipart/form-data">
@@ -70,17 +79,18 @@
                                     </div>
                                 @enderror
                             </div>
-                            {{-- <div class="row mb-3">
-                                <label for="description" class="col-sm-2 col-form-label">Deskripsi Kantor Cabang</label>
+                            <div class="row mb-3">
+                                <label for="phone_number" class="col-sm-2 col-form-label">Nomor Telepon</label>
                                 <div class="col-sm-10">
-                                    <textarea class="form-control @error('description') is-invalid @enderror" style="height: 100px" name="description">{{ $kantorcabang->description }}</textarea>
+                                    <input type="text" class="form-control @error('phone_number') is-invalid @enderror"
+                                        name="phone_number" value="{{ $kantorcabang->phone_number }}">
                                 </div>
-                                @error('description')
+                                @error('phone_number')
                                     <div class="invalid-feedback">
-                                        Deskripsi tidak boleh kosong
+                                        Nomor Telepon tidak boleh kosong
                                     </div>
                                 @enderror
-                            </div> --}}
+                            </div>
                             <div class="row mb-3">
                                 <label for="address" class="col-sm-2 col-form-label">Alamat kantorcabang</label>
                                 <div class="col-sm-10">
@@ -93,6 +103,15 @@
                                     </div>
                                 @enderror
                             </div>
+                            <div class="row mb-3">
+                                <label for="image" class="col-sm-2 col-form-label">Gambar Kantor Cabang</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control @error('image') is-invalid @enderror" type="file"
+                                        name="image">
+                                </div>
+                            </div>
+
+                            <h5 class="card-title">Lokasi</h5>
                             <div class="row mb-3">
                                 <label for="location" class="col-sm-2 col-form-label">Longitude</label>
                                 <div class="col-sm-10">
@@ -114,7 +133,7 @@
                                     <div class="input-group">
                                         <input type="text" class="form-control @error('latitude') is-invalid @enderror"
                                             name="latitude" id="latitude">
-                                        <button class="btn btn-success" type="button" onclick="addMarker();">Cek</button>
+                                        {{-- <button class="btn btn-success" type="button" onclick="addMarker();">Cek</button> --}}
                                     </div>
                                 </div>
                                 @error('location')
@@ -129,13 +148,7 @@
                                     <div id="map"></div>
                                 </div>
                             </div>
-                            <div class="row mb-3">
-                                <label for="image" class="col-sm-2 col-form-label">Gambar Kantor Cabang</label>
-                                <div class="col-sm-10">
-                                    <input class="form-control @error('image') is-invalid @enderror" type="file"
-                                        name="image">
-                                </div>
-                            </div>
+                            
                             <div class="row mb-3">
                                 <label class="col-sm-2 col-form-label">Submit Button</label>
                                 <div class="col-sm-10">

@@ -1,6 +1,6 @@
 @extends('penyewa.layouts.app')
 
-@section('title', 'Welcome')
+@section('title', 'Profile')
 
 @section('content')
 

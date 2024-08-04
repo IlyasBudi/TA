@@ -17,7 +17,7 @@ class booking extends Model
         'destination',
         'departure_date',
         'arrival_date',
-        'pickup-time',
+        'pickup_time',
         'longitude',
         'latitude',
     ];

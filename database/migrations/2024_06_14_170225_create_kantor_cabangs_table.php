@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('image');
             $table->string ('address');
+            $table->string('phone_number');
             // $table->string('location')->nullable(true);
             $table->string('longitude');
             $table->string('latitude');

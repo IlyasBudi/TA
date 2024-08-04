@@ -23,6 +23,11 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Edit Rekening</h5>
+                        @if ($errors->has('error'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
 
                         <!-- General Form Elements -->
                         <form action="/staff/rekening/{{ $rekening->id }}" method="POST" enctype="multipart/form-data">
@@ -49,7 +54,7 @@
                                 </div>
                                 @error('bank_name')
                                     <div class="invalid-feedback">
-                                        Nama tidak boleh kosong
+                                        Nama bank tidak boleh kosong
                                     </div>
                                 @enderror
                             </div>
@@ -62,7 +67,7 @@
                                 </div>
                                 @error('bank_number')
                                     <div class="invalid-feedback">
-                                        Nama tidak boleh kosong
+                                        Nomor rekening tidak boleh kosong
                                     </div>
                                 @enderror
                             </div>

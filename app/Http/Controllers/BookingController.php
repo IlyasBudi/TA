@@ -14,11 +14,23 @@ use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
+    private function generateUniqueCode()
+    {
+        do {
+            $code = 'TRANS-' . mt_rand(000, 999);
+        } while (Booking::where('code', $code)->exists());
+
+        return $code;
+    }
+
     public function bookingpage()
     {
+        $code = $this->generateUniqueCode();
+        $admin_id = 1;
+        $user_id = Auth::id();
         $categorybus = category_bus::all();
 
-        return view('penyewa.bookingpage', ['categorybus' => $categorybus]);
+        return view('penyewa.bookingpage', ['categorybus' => $categorybus, 'user_id' => $user_id, 'admin_id' => $admin_id, 'code' => $code]);
     }
 
     public function booking(Request $request)
@@ -26,7 +38,7 @@ class BookingController extends Controller
         $code = 'TRANS-' . mt_rand(000, 999);
 
         $validated = $request->validate([
-            // 'code' => 'required',
+            'code' => 'required',
             'admin_id' => 'required',
             'user_id' => 'required',
             'category_bus_id' => 'required',
@@ -39,7 +51,7 @@ class BookingController extends Controller
         ]);
 
         $admin_id = 1;
-        $user_id = Auth::user()->id;
+        $user_id = Auth::id();
 
         $booking = booking::create([
             'code' => $code,
@@ -58,4 +70,6 @@ class BookingController extends Controller
         // dd($booking);
         return redirect('/')->with('Success', 'Booking berhasil dibuat!');
     }
+    
+    
 }

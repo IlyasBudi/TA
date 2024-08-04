@@ -17,5 +17,11 @@ class TransactionController extends Controller
         return view('admin.transaction.index', compact('transaction'));
     }
 
+    public function destroy(string $id)
+    {
+        booking::destroy($id);
+        return redirect('/admin/transaction');
+    }
+
     
 }

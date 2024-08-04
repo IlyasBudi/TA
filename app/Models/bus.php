@@ -38,6 +38,11 @@ class bus extends Model
         return $this->hasMany(detail_transaction::class);
     }
 
+    public function schedule_bus()
+    {
+        return $this->hasMany(schedule_bus::class);
+    }
+
     // public function getIsReadyAttribute($value)
     // {
     // return $value ? 'Tersedia' : 'Tidak Tersedia';

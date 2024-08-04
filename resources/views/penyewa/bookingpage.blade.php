@@ -1,6 +1,6 @@
 @extends('penyewa.layouts.app')
 
-@section('title', 'Welcome')
+@section('title', 'Booking')
 
 @push('before-style')
     <!-- pada section styles menambahkan style css untuk menampilkan plugin leaflet  -->
@@ -44,13 +44,13 @@
                 <h1>Booking</h1>
                 <p class="mb-0">Selamat datang di halaman pemesanan kami. Kami siap menemani perjalanan Anda dengan kenyamanan dan keamanan.</p>
             
-                <form class="booking-form" action="{{ route('booking') }}" method="post" enctype="multipart/form-data" data-aos="fade-up" data-aos-delay="200">
+                <form class="booking-form" action="{{ route('booking') }}" method="post" data-aos="fade-up" data-aos-delay="200">
                 @csrf
                 <div class="row gy-4">
 
                     <div class="col-12">
                         <label class="label-form">Destinasi</label>
-                        <select class="form-select" name="destination_id" id='destination_id'>
+                        <select class="form-select" name="destination" id='destination'>
                             <option selected>Pilih Destinasi</option>
                             <option value="Jakarta - TM. Mini - Ancol">Jakarta - TM. Mini - Ancol</option>
                             <option value="Bogor">Bogor</option>
@@ -98,13 +98,28 @@
                     </div>
 
                     <div class="col-12">
-                        {{-- <label class="label-form">Longitude</label> --}}
-                        <input type="text" class="form-control" id="longitude" name="longitude" disabled required>
+                        <label class="label-form">Admin</label>
+                        <input type="text" class="form-control" name="admin_id" value="{{ $admin_id }}" readonly required>
                     </div>
 
                     <div class="col-12">
-                        {{-- <label class="label-form">Latitude</label> --}}
-                        <input type="text" class="form-control" id="latitude" name="latitude" disabled required>
+                        <label class="label-form">Code</label>
+                        <input type="text" class="form-control" name="code" value="{{ $code }}" readonly required>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="label-form">User</label>
+                        <input type="text" class="form-control" name="user_id" value="{{ $user_id }}" readonly required>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="label-form">Longitude</label>
+                        <input type="text" class="form-control" id="longitude" name="longitude" required>
+                    </div>
+
+                    <div class="col-12">
+                        <label class="label-form">Latitude</label>
+                        <input type="text" class="form-control" id="latitude" name="latitude"  required>
                     </div>
 
                     <div class="col-12">
@@ -130,20 +145,14 @@
             </div>
         </div>
         </div>
-        {{-- <nav class="breadcrumbs">
-        <div class="container">
-            <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Services Details</li>
-            </ol>
-        </div>
-        </nav> --}}
+    
     </div><!-- End Page Title -->
 @endsection
 
 
 @push('after-scripts')
-<script src="{{ asset('v1/vendor/select2/js/select2.full.min.js') }}"></script>
+{{-- <script src="{{ asset('v1/vendor/select2/js/select2.full.min.js') }}"></script> --}}
+
 <script>
     // membuat variabel untuk load attribute dan url pada map
     var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +

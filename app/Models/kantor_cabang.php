@@ -12,6 +12,7 @@ class kantor_cabang extends Model
         'name',
         'image',
         'address',
+        'phone_number',
         // 'location',
         'longitude',
         'latitude',

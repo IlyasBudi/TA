@@ -23,7 +23,12 @@
                 <div class="card">
                     <div class="card-body">
                         <h5 class="card-title">Edit Bus</h5>
-
+                        @if ($errors->has('error'))
+                            <div class="alert alert-danger">
+                                {{ $errors->first('error') }}
+                            </div>
+                        @endif
+                        
                         <!-- General Form Elements -->
                         <form action="/staff/bus/{{ $bus->id }}" method="POST" enctype="multipart/form-data">
                             @method('put')

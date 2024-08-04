@@ -30,6 +30,7 @@ class KantorCabangController extends Controller
         $validated = $request->validate([
             'name' => 'required|string',
             'image' => 'required|mimes:jpg,jpeg,png|max:5120',
+            'phone_number' => 'required|string',
             'address' => 'required|string',
             // 'location' => 'string',
             'longitude' => 'string',
@@ -44,6 +45,7 @@ class KantorCabangController extends Controller
         Kantor_cabang::create([
             'name' => $validated['name'],
             'image' => $saveImage['image'],
+            'phone_number' => $validated['phone_number'],
             'address' => $validated['address'],
             'longitude' => $validated['longitude'],
             'latitude' => $validated['latitude'],
@@ -73,6 +75,7 @@ class KantorCabangController extends Controller
         $validated = $request->validate([
             'name' => 'required|string',
             'image' => 'mimes:jpg,jpeg,png|max:5120',
+            'phone_number' => 'required|string',
             'address' => 'required|string',
             // 'location' => 'string',
             'longitude' => 'required|string',
@@ -97,6 +100,7 @@ class KantorCabangController extends Controller
         kantor_cabang::where('id', $id)->update([
             'name' => $validated['name'],
             'image' => $newImage['image'],
+            'phone_number' => $validated['phone_number'],
             'address' => $validated['address'],
             // 'location' => $validated['location'],
             'longitude' => $validated['longitude'],

@@ -31,8 +31,14 @@ class AdminSeeder extends Seeder
             'name' => 'Big Bus Seat 59 2-3 Non Toilet',
         ],
         [
-            'name' => 'Seat 30/35/39 2-2',
-        ]
+            'name' => 'Medium Bus Seat 30 2-2',
+        ],
+        [
+            'name' => 'Medium Bus Seat 35 2-2',
+        ],
+        [
+            'name' => 'Medium Bus Seat 39 2-2',
+        ],
     ]);
     }
 }

@@ -40,10 +40,10 @@
                                         <th scope="row">{{ $loop->iteration }}</th>
                                         <td>{{ $item->code }}</td>
                                         <td>{{ $item->user->name }}</td>
-                                        {{-- <td>{{ $item->categorybus_id->name }}</td> --}}
+                                        <td>{{ $item->category_bus->name }}</td>
                                         <td>{{ $item->departure_date }}|{{ $item->arrival_date }}</td>
                                         <td>{{ $item->created_at }}</td>
-                                        <td><a href=""
+                                        <td><a href="/admin/transaction/{{ $item->id }}"
                                                 class="btn btn-primary"><i class="bi bi-eye-fill text-white"></i></a>
                                                 {{-- | <a href="/admin/transaction/{{ $item->id }}/delete" class="btn btn-danger"><i
                                                     class="bi bi-trash3-fill text-white"></i></a> --}}

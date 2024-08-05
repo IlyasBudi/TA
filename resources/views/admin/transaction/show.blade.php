@@ -24,19 +24,39 @@
                         <table class="table mb-5">
                             <tbody>
                                 <tr>
-                                    <th>Pembeli</th>
+                                    <th>Nama Penyewa</th>
                                     <td>{{ $transaction->user->name }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Alamat Lengkap</th>
-                                    <td>{{ $transaction->user->address }}</td>
+                                    <th>Nomor Telepon Penyewa</th>
+                                    <td>{{ $transaction->user->phone_number }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Category Bus</th>
+                                    <td>{{ $transaction->category_bus->name }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Destinasi</th>
+                                    <td>{{ $transaction->destination }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Keberangkatan</th>
+                                    <td>{{ $transaction->departure_date }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tanggal Kepulangan</th>
+                                    <td>{{ $transaction->arrival_date }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Waktu Penjemputan</th>
+                                    <td>{{ $transaction->pickup_time }}</td>
                                 </tr>
                                 
                                 <tr>
-                                {{-- <tr>
+                                <tr>
                                     <th>Tanggal</th>
                                     <td>{{ $transaction->created_at }}</td>
-                                </tr> --}}
+                                </tr>
                                 {{-- <tr>
                                     <th>Status Pembayaran</th>
                                     <td>{{ $transaction->transaction_status }}</td>
@@ -45,7 +65,7 @@
                             </tbody>
                         </table>
                         <!-- Table with stripped rows -->
-                        <h6>Data Detail Transaksi</h6>
+                        {{-- <h6>Data Detail Transaksi</h6>
                         <table class="table">
                             <thead>
                                 <tr>
@@ -69,7 +89,7 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-                        </table>
+                        </table> --}}
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>

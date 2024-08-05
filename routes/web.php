@@ -21,6 +21,7 @@ use App\Models\Admin;
 use App\Models\Staff;
 use App\Models\User;
 use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Database\Events\TransactionBeginning;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -144,6 +145,7 @@ Route::prefix('/admin')->middleware('auth:admin')->group(function () {
         Route::put('/kantorcabang/{id}', [AdminController::class, 'updateKantorCabang']);
         // Transaksi
         Route::get('/transaction', [TransactionController::class, 'transaction']);
+        Route::get('/transaction/{id}', [TransactionController::class, 'show']);
         // Route::get('/transaction/{id}/delete', [TransactionController::class, 'destroy']);
     }
 );

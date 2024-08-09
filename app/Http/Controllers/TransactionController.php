@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\transaction;
 use App\Models\booking;
 use App\Models\admin;
+use App\Models\kantor_cabang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -23,21 +24,26 @@ class TransactionController extends Controller
         return redirect('/admin/transaction');
     }
 
-    // public function show(string $id)
-    // {
-    //     $kantorcabang = kantor_cabang::with('staff')->findOrFail($id);
-    //     return view('staff.kantorcabang.show', ['kantorcabang' => $kantorcabang]);
-    // }
-
-    // public function show(booking $booking)
-    // {
-    //     $details = booking::with(['user', 'category_bus'])->findOrFail($id);
-    //     return view('admin.transaction.show', ['booking' => $booking]);
-    // }
-
     public function show(string $id)
     {
         $transaction = booking::with(['user', 'category_bus'])->findOrFail($id);
-        return view('admin.transaction.show', ['transaction' => $transaction]);
+
+        $category_bus = $transaction->category_bus;
+        $longitude = $transaction->longitude;
+        $latitude = $transaction->latitude;
+
+        // $nearestBranches = kantor_cabang::selectRaw('id, name, address, phone_number, image, longitude, latitude, ( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance', [$latitude, $longitude, $latitude])
+        //     ->orderBy('distance')
+        //     ->get();
+
+        // Hitung jarak menggunakan rumus Haversine dan urutkan berdasarkan jarak terdekat
+        $nearestBranches = kantor_cabang::selectRaw('id, name, address, phone_number, image, longitude, latitude, ( 6371 * acos( cos( radians(?) ) * cos( radians( latitude ) ) * cos( radians( longitude ) - radians(?) ) + sin( radians(?) ) * sin( radians( latitude ) ) ) ) AS distance', [$latitude, $longitude, $latitude])
+        ->orderBy('distance')
+        ->with('bus') // Ambil data bus yang terkait
+        ->get();
+
+        return view('admin.transaction.show', ['transaction' => $transaction, 'nearestBranches' => $nearestBranches]);
     }
+
+    
 }

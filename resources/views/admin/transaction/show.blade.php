@@ -32,7 +32,7 @@
                                     <td>{{ $transaction->user->phone_number }}</td>
                                 </tr>
                                 <tr>
-                                    <th>Category Bus</th>
+                                    <th>Kategori Bus</th>
                                     <td>{{ $transaction->category_bus->name }}</td>
                                 </tr>
                                 <tr>
@@ -57,6 +57,12 @@
                                     <th>Tanggal</th>
                                     <td>{{ $transaction->created_at }}</td>
                                 </tr>
+                                {{-- <tr>
+                                    @foreach ($nearestBranches as $branch)
+                                    <th>Distance</th>
+                                    <td>{{ $branch->name }}, {{ number_format($branch->distance) }}</td>
+                                    @endforeach
+                                </tr> --}}
                                 {{-- <tr>
                                     <th>Status Pembayaran</th>
                                     <td>{{ $transaction->transaction_status }}</td>
@@ -90,6 +96,7 @@
                                 @endforeach
                             </tbody>
                         </table> --}}
+                        
                         <!-- End Table with stripped rows -->
                     </div>
                 </div>

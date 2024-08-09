@@ -28,8 +28,8 @@
                                     <th scope="col">#</th>
                                     <th scope="col">Kode Transaksi</th>
                                     <th scope="col">Nama Penyewa</th>
-                                    <th scope="col">Category Bus</th>
-                                    <th scope="col">Departure - Arrival Date</th>
+                                    <th scope="col">Kategori Bus</th>
+                                    <th scope="col">TanggaL Keberangkatan - Kepulangan</th>
                                     <th scope="col">Tanggal</th>
                                     <th scope="col">Aksi</th>
                                 </tr>

@@ -98,21 +98,6 @@
                     </div>
 
                     <div class="col-12">
-                        <label class="label-form">Admin</label>
-                        <input type="text" class="form-control" name="admin_id" value="{{ $admin_id }}" readonly required>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="label-form">Code</label>
-                        <input type="text" class="form-control" name="code" value="{{ $code }}" readonly required>
-                    </div>
-
-                    <div class="col-12">
-                        <label class="label-form">User</label>
-                        <input type="text" class="form-control" name="user_id" value="{{ $user_id }}" readonly required>
-                    </div>
-
-                    <div class="col-12">
                         <label class="label-form">Longitude</label>
                         <input type="text" class="form-control" id="longitude" name="longitude" required>
                     </div>
@@ -121,6 +106,23 @@
                         <label class="label-form">Latitude</label>
                         <input type="text" class="form-control" id="latitude" name="latitude"  required>
                     </div>
+
+                    <div class="col-12">
+                        {{-- <label class="label-form">Admin</label> --}}
+                        <input type="hidden" class="form-control" name="admin_id" value="{{ $admin_id }}" readonly required>
+                    </div>
+
+                    <div class="col-12">
+                        {{-- <label class="label-form">Code</label> --}}
+                        <input type="hidden" class="form-control" name="code" value="{{ $code }}" readonly required>
+                    </div>
+
+                    <div class="col-12">
+                        {{-- <label class="label-form">User</label> --}}
+                        <input type="hidden" class="form-control" name="user_id" value="{{ $user_id }}" readonly required>
+                    </div>
+
+                    
 
                     <div class="col-12">
                         <label for="location" class="label-form">Lokasi Keberangkatan</label>
@@ -297,5 +299,19 @@
             console.log("Invalid input format. Please use the format 'latitude,longitude'.");
         }
     }
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const pickUpTimeInput = document.querySelector('input[name="pickup_time"]');
+    
+        pickUpTimeInput.addEventListener('change', function () {
+            const timeValue = this.value;
+            if (timeValue < "05:00") {
+                alert("Waktu penjemputan tidak bisa sebelum jam 05:00.");
+                // Opsional: Setel ulang nilai input atau atur ke nilai default
+                this.value = "05:00";
+            }
+        });
+    });
 </script>
 @endpush

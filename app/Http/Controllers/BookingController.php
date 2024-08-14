@@ -43,8 +43,8 @@ class BookingController extends Controller
             'user_id' => 'required',
             'category_bus_id' => 'required',
             'destination' => 'required',
-            'departure_date' => 'required',
-            'arrival_date' => 'required',
+            'departure_date' => 'required|date|after_or_equal:today',
+            'arrival_date' => 'required|date|after_or_equal:departure_date',
             'pickup_time' => 'required',
             'longitude' => 'required|string',
             'latitude' => 'required|string',
@@ -53,23 +53,25 @@ class BookingController extends Controller
         $admin_id = 1;
         $user_id = Auth::id();
 
-        $booking = booking::create([
-            'code' => $code,
-            'admin_id' => $admin_id,
-            'user_id' => $user_id,
-            'category_bus_id' => $validated['category_bus_id'],
-            'destination' => $validated['destination'],
-            'departure_date' => $validated['departure_date'],
-            'arrival_date' => $validated['arrival_date'],
-            'pickup_time' => $validated['pickup_time'],
-            'longitude' => $validated['longitude'],
-            'latitude' => $validated['latitude'],
-        ]);
+        try {
+            $booking = booking::create([
+                'code' => $code,
+                'admin_id' => $admin_id,
+                'user_id' => $user_id,
+                'category_bus_id' => $validated['category_bus_id'],
+                'destination' => $validated['destination'],
+                'departure_date' => $validated['departure_date'],
+                'arrival_date' => $validated['arrival_date'],
+                'pickup_time' => $validated['pickup_time'],
+                'longitude' => $validated['longitude'],
+                'latitude' => $validated['latitude'],
+            ]);
 
-        // $booking->save();
-        // dd($booking);
-        return redirect('/')->with('Success', 'Booking berhasil dibuat!');
+            // $booking->save();
+            // dd($booking);
+            return redirect('/')->with('Success', 'Booking berhasil dibuat!');
+        } catch (\Exception $e) {
+            return back()->withInput()->withErrors(['error', 'Terjadi kesalahan saat membuat booking. Periksa kembali data yang dimasukkan.']);
+        }
     }
-    
-    
 }

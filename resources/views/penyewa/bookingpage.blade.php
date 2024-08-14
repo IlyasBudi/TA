@@ -43,7 +43,23 @@
             <div class="col-lg-10">
                 <h1>Booking</h1>
                 <p class="mb-0">Selamat datang di halaman pemesanan kami. Kami siap menemani perjalanan Anda dengan kenyamanan dan keamanan.</p>
-            
+                
+                @if (session('Success'))
+                    <div class="alert alert-success">
+                        {{ session('Success') }}
+                    </div>
+                @endif
+
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 <form class="booking-form" action="{{ route('booking') }}" method="post" data-aos="fade-up" data-aos-delay="200">
                 @csrf
                 <div class="row gy-4">
@@ -51,7 +67,7 @@
                     <div class="col-12">
                         <label class="label-form">Destinasi</label>
                         <select class="form-select" name="destination" id='destination'>
-                            <option selected>Pilih Destinasi</option>
+                            <option selected disabled>Pilih Destinasi</option>
                             <option value="Jakarta - TM. Mini - Ancol">Jakarta - TM. Mini - Ancol</option>
                             <option value="Bogor">Bogor</option>
                             <option value="Bandung">Bandung</option>
@@ -75,7 +91,7 @@
                     <div class="col-12">
                         <label class="label-form">Kategori Bus</label>
                         <select class="form-select" name="category_bus_id" id='category_bus_id'>
-                            <option selected>Pilih Kategori</option>
+                            <option selected disabled>Pilih Kategori</option>
                             @foreach ($categorybus as $categorybus)
                             <option value="{{ $categorybus->id }}">{{ $categorybus->name }}</option>
                             @endforeach
@@ -299,6 +315,20 @@
             console.log("Invalid input format. Please use the format 'latitude,longitude'.");
         }
     }
+</script>
+<script>
+    // Validasi tanggal
+    var today = new Date().toISOString().split('T')[0];
+        var departureDateInput = document.getElementById('departure_date');
+        var arrivalDateInput = document.getElementById('arrival_date');
+
+        departureDateInput.setAttribute('min', today);
+        arrivalDateInput.setAttribute('min', today);
+
+        departureDateInput.addEventListener('change', function () {
+            var departureDate = this.value;
+            arrivalDateInput.setAttribute('min', departureDate);
+    });
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

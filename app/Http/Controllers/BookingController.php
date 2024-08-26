@@ -53,6 +53,25 @@ class BookingController extends Controller
         $admin_id = 1;
         $user_id = Auth::id();
 
+        // Check date availability for the given destination
+        // $departure_date = $validated['departure_date'];
+        // $arrival_date = $validated['arrival_date'];
+        // $destination = $validated['destination'];
+
+        // $existingBookings = Booking::where('destination', $destination)
+        //     ->where(function ($query) use ($departure_date, $arrival_date) {
+        //         $query->whereBetween('departure_date', [$departure_date, $arrival_date])
+        //             ->orWhereBetween('arrival_date', [$departure_date, $arrival_date])
+        //             ->orWhere(function ($query) use ($departure_date, $arrival_date) {
+        //                 $query->where('departure_date', '<=', $departure_date)
+        //                         ->where('arrival_date', '>=', $arrival_date);
+        //             });
+        //     })->exists();
+
+        // if ($existingBookings) {
+        //     return back()->withErrors(['date' => 'The selected dates are not available for the chosen destination.']);
+        // }
+
         try {
             $booking = booking::create([
                 'code' => $code,

@@ -80,6 +80,7 @@
                             <option value="Jogja">Jogja</option>
                             <option value="Dieng">Dieng</option>
                             <option value="Malang">Malang</option>
+                            <option value="Ziarah">Ziarah</option>
                             <option value="Bali">Bali</option>
                             <option value="Lampung">Lampung</option>
                             <option value="Palembang">Palembang</option>
@@ -170,7 +171,8 @@
 
 @push('after-scripts')
 {{-- <script src="{{ asset('v1/vendor/select2/js/select2.full.min.js') }}"></script> --}}
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.34/moment-timezone-with-data.min.js"></script>
 <script>
     // membuat variabel untuk load attribute dan url pada map
     var mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, ' +
@@ -316,23 +318,120 @@
         }
     }
 </script>
+
 <script>
-    // Validasi tanggal
-    var today = new Date().toISOString().split('T')[0];
-        var departureDateInput = document.getElementById('departure_date');
-        var arrivalDateInput = document.getElementById('arrival_date');
+    // Minimal penyewaan 2 hari
+    document.addEventListener('DOMContentLoaded', function () {
+        const destinationSelect = document.getElementById('destination');
+        const departureDateInput = document.querySelector('input[name="departure_date"]');
+        const arrivalDateInput = document.querySelector('input[name="arrival_date"]');
+        const bookingForm = document.querySelector('.booking-form');
 
-        departureDateInput.setAttribute('min', today);
-        arrivalDateInput.setAttribute('min', today);
+        bookingForm.addEventListener('submit', function (event) {
+            const destination = destinationSelect.value;
+            const departureDate = new Date(departureDateInput.value);
+            const arrivalDate = new Date(arrivalDateInput.value);
 
-        departureDateInput.addEventListener('change', function () {
-            var departureDate = this.value;
-            arrivalDateInput.setAttribute('min', departureDate);
+            if (destination === 'Pelabuhan Ratu') {
+                const timeDifference = arrivalDate.getTime() - departureDate.getTime();
+                const dayDifference = timeDifference / (1000 * 3600 * 24);
+
+                if (dayDifference < 2) {
+                    event.preventDefault();
+                    alert('Minimal pemesanan untuk destinasi yang dipilih adalah 2 hari.');
+                }
+            }
+        });
+    });
+
+    // Minimal penyewaan 3 hari
+    document.addEventListener('DOMContentLoaded', function () {
+        const destinationSelect = document.getElementById('destination');
+        const departureDateInput = document.querySelector('input[name="departure_date"]');
+        const arrivalDateInput = document.querySelector('input[name="arrival_date"]');
+        const bookingForm = document.querySelector('.booking-form');
+
+        bookingForm.addEventListener('submit', function (event) {
+            const destination = destinationSelect.value;
+            const departureDate = new Date(departureDateInput.value);
+            const arrivalDate = new Date(arrivalDateInput.value);
+
+            if (destination === 'Jogja' || destination === 'Semarang - Kudus' || destination === 'Malang' || destination === 'Dieng' || destination === 'Palembang') {
+                const timeDifference = arrivalDate.getTime() - departureDate.getTime();
+                const dayDifference = timeDifference / (1000 * 3600 * 24);
+
+                if (dayDifference < 3) {
+                    event.preventDefault();
+                    alert('Minimal pemesanan untuk destinasi yang dipilih adalah 3 hari.');
+                }
+            }
+        });
+    });
+
+    // Minimal penyewaan 4 hari
+    document.addEventListener('DOMContentLoaded', function () {
+        const destinationSelect = document.getElementById('destination');
+        const departureDateInput = document.querySelector('input[name="departure_date"]');
+        const arrivalDateInput = document.querySelector('input[name="arrival_date"]');
+        const bookingForm = document.querySelector('.booking-form');
+
+        bookingForm.addEventListener('submit', function (event) {
+            const destination = destinationSelect.value;
+            const departureDate = new Date(departureDateInput.value);
+            const arrivalDate = new Date(arrivalDateInput.value);
+
+            if (destination === 'Ziarah') {
+                const timeDifference = arrivalDate.getTime() - departureDate.getTime();
+                const dayDifference = timeDifference / (1000 * 3600 * 24);
+
+                if (dayDifference < 4) {
+                    event.preventDefault();
+                    alert('Minimal pemesanan untuk destinasi yang dipilih adalah 4 hari.');
+                }
+            }
+        });
+    });
+
+    // Minimal penyewaan 7 hari
+    document.addEventListener('DOMContentLoaded', function () {
+        const destinationSelect = document.getElementById('destination');
+        const departureDateInput = document.querySelector('input[name="departure_date"]');
+        const arrivalDateInput = document.querySelector('input[name="arrival_date"]');
+        const bookingForm = document.querySelector('.booking-form');
+
+        bookingForm.addEventListener('submit', function (event) {
+            const destination = destinationSelect.value;
+            const departureDate = new Date(departureDateInput.value);
+            const arrivalDate = new Date(arrivalDateInput.value);
+
+            if (destination === 'Bali') {
+                const timeDifference = arrivalDate.getTime() - departureDate.getTime();
+                const dayDifference = timeDifference / (1000 * 3600 * 24);
+
+                if (dayDifference < 7) {
+                    event.preventDefault();
+                    alert('Minimal pemesanan untuk destinasi yang dipilih adalah 7 hari.');
+                }
+            }
+        });
     });
 </script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const pickUpTimeInput = document.querySelector('input[name="pickup_time"]');
+        const departureDateInput = document.querySelector('input[name="departure_date"]');
+        const arrivalDateInput = document.querySelector('input[name="arrival_date"]');
+
+        // Set minimum date to today
+        const today = moment().tz("Asia/Jakarta").format('YYYY-MM-DD');
+        // const today = new Date().toISOString().split('T')[0];
+        departureDateInput.setAttribute('min', today);
+        arrivalDateInput.setAttribute('min', today);
+
+        departureDateInput.addEventListener('change', function () {
+            const departureDate = this.value;
+            arrivalDateInput.setAttribute('min', departureDate);
+        });
     
         pickUpTimeInput.addEventListener('change', function () {
             const timeValue = this.value;
@@ -344,4 +443,5 @@
         });
     });
 </script>
+
 @endpush

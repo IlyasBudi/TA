@@ -22,7 +22,7 @@ class AdminSeeder extends Seeder
 
     DB::table('category_buses')->insert([
         [
-            'name' => 'Big Bus Seat 46 2-2 Non Toilet',
+            'name' => 'Big Bus Seat 46 2-2 Toilet',
         ],
         [
             'name' => 'Big Bus Seat 50 2-2 Non Toilet',
@@ -30,9 +30,9 @@ class AdminSeeder extends Seeder
         [
             'name' => 'Big Bus Seat 59 2-3 Non Toilet',
         ],
-        [
-            'name' => 'Medium Bus Seat 30 2-2',
-        ],
+        // [
+        //     'name' => 'Medium Bus Seat 30 2-2',
+        // ],
         [
             'name' => 'Medium Bus Seat 35 2-2',
         ],

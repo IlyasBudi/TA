@@ -38,9 +38,9 @@ class bus extends Model
         return $this->hasMany(detail_transaction::class);
     }
 
-    public function schedule_bus()
+    public function booking()
     {
-        return $this->hasMany(schedule_bus::class);
+        return $this->hasMany(booking::class);
     }
 
     // public function getIsReadyAttribute($value)

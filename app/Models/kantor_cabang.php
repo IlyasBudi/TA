@@ -43,4 +43,9 @@ class kantor_cabang extends Model
     {
         return $this->hasMany(transaction::class);
     }
+
+    public function booking()
+    {
+        return $this->hasMany(booking::class);
+    }
 }

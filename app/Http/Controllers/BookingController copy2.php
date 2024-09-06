@@ -57,16 +57,35 @@ class BookingController extends Controller
         $admin_id = 1;
         $user_id = Auth::id();
 
+        // Check date availability for the given destination
+        // $departure_date = $validated['departure_date'];
+        // $arrival_date = $validated['arrival_date'];
+        // $destination = $validated['destination'];
+
+        // $existingBookings = Booking::where('destination', $destination)
+        //     ->where(function ($query) use ($departure_date, $arrival_date) {
+        //         $query->whereBetween('departure_date', [$departure_date, $arrival_date])
+        //             ->orWhereBetween('arrival_date', [$departure_date, $arrival_date])
+        //             ->orWhere(function ($query) use ($departure_date, $arrival_date) {
+        //                 $query->where('departure_date', '<=', $departure_date)
+        //                         ->where('arrival_date', '>=', $arrival_date);
+        //             });
+        //     })->exists();
+
+        // if ($existingBookings) {
+        //     return back()->withErrors(['date' => 'The selected dates are not available for the chosen destination.']);
+        // }
+
         //select kantor cabang terdekat [dengan kondisi data lebih dari satu maka menghitung latlong jika tidak maka ambil data pertama]
         $latitude = $validated['latitude'];
         $longitude = $validated['longitude'];
         $category_bus_id = $validated['category_bus_id'];
         //get ditance
-        $kantorcabang = kantor_cabang::all();
+        $kantor_cabang = kantor_cabang::all();
         // looping cari data terdekat
         $minDistance = PHP_FLOAT_MAX;
         $closestLocationId = null;
-        foreach ($kantorcabang as $item){
+        foreach ($kantor_cabang as $item){
             $distance = $this->haversineDistance($latitude, $longitude, $item['latitude'], $item['longitude']);
             if ($distance < $minDistance) {
                 $minDistance = $distance;
@@ -80,76 +99,6 @@ class BookingController extends Controller
             // $kantor_cabang_id = $existingBus['kantor_cabang_id'];
             // $kantorcabang_id = $closestLocationId;
             $bus_id = $existingBus->id;
-
-        // Check date availability for the given bus_id
-        $departure_date = $validated['departure_date'];
-        $arrival_date = $validated['arrival_date'];
-        $bus_id = $bus_id;
-
-        $existingBookings = booking::where('bus_id', $bus_id)
-            ->where(function ($query) use ($departure_date, $arrival_date) {
-                $query->whereBetween('departure_date', [$departure_date, $arrival_date])
-                    ->orWhereBetween('arrival_date', [$departure_date, $arrival_date])
-                    ->orWhere(function ($query) use ($departure_date, $arrival_date) {
-                        $query->where('departure_date', '<=', $departure_date)
-                                ->where('arrival_date', '>=', $arrival_date);
-                    });
-            })->exists();
-
-            if ($existingBookings) {
-                // Cari bus_id yang berbeda dari kantor cabang yang sama
-                $alternativeBus = bus::where('kantor_cabang_id', $kantorcabang_id)
-                                    ->where('category_bus_id', $validated['category_bus_id'])
-                                    ->where('status', 'Tersedia')
-                                    ->where('id', '!=', $bus_id)
-                                    ->whereDoesntHave('booking', function ($query) use ($departure_date, $arrival_date) {
-                                        $query->whereBetween('departure_date', [$departure_date, $arrival_date])
-                                            ->orWhereBetween('arrival_date', [$departure_date, $arrival_date])
-                                            ->orWhere(function ($query) use ($departure_date, $arrival_date) {
-                                                $query->where('departure_date', '<=', $departure_date)
-                                                      ->where('arrival_date', '>=', $arrival_date);
-                                            });
-                                    })
-                                    ->first();
-    
-                if ($alternativeBus) {
-                    $bus_id = $alternativeBus->id;
-                } else {
-                    // Jika tidak ada bus_id yang tersedia di kantor cabang yang sama, cari di kantor cabang lain yang terdekat
-                    $alternativeBusFound = false;
-                    $sortedBranches = $kantorcabang->sortBy(function ($item) use ($latitude, $longitude) {
-                        return $this->haversineDistance($latitude, $longitude, $item->latitude, $item->longitude);
-                    });
-    
-                    foreach ($sortedBranches as $kantorcabang) {
-                        if ($kantorcabang->id != $kantorcabang_id) {
-                            $alternativeBus = bus::where('kantor_cabang_id', $kantorcabang->id)
-                                                ->where('category_bus_id', $validated['category_bus_id'])
-                                                ->where('status', 'Tersedia')
-                                                ->whereDoesntHave('booking', function ($query) use ($departure_date, $arrival_date) {
-                                                    $query->whereBetween('departure_date', [$departure_date, $arrival_date])
-                                                        ->orWhereBetween('arrival_date', [$departure_date, $arrival_date])
-                                                        ->orWhere(function ($query) use ($departure_date, $arrival_date) {
-                                                            $query->where('departure_date', '<=', $departure_date)
-                                                                  ->where('arrival_date', '>=', $arrival_date);
-                                                        });
-                                                })
-                                                ->first();
-    
-                            if ($alternativeBus) {
-                                $bus_id = $alternativeBus->id;
-                                $kantorcabang_id = $kantorcabang->id; // Update kantor cabang ID
-                                $alternativeBusFound = true;
-                                break;
-                            }
-                        }
-                    }
-    
-                    if (!$alternativeBusFound) {
-                        return back()->withInput()->withErrors(['bus' => 'Tidak ada bus yang tersedia pada tanggal yang dipilih. Silahkan pilih tanggal lain.']);
-                    }
-                }
-            }
 
             try {
                 $booking = booking::create([
@@ -177,7 +126,6 @@ class BookingController extends Controller
             return back()->withInput()->withErrors(['error', 'Type Bus tidak tersedia di lokasi kantor cabang terdekat. silahkan pilih type bus lain nya']);
         }
     }
-
     public function haversineDistance($lat1, $lon1, $lat2, $lon2) {
         $earthRadius = 6371;  // Earth's radius in kilometers
     

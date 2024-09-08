@@ -22,6 +22,11 @@ class destination extends Model
     {
         return $this->belongsTo(kantor_cabang::class);
     }
+
+    public function destination()
+    {
+        return $this->hasMany(destination::class);
+    }
     
     public function transaction()
     {

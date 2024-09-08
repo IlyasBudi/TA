@@ -20,7 +20,7 @@ return new class extends Migration
             $table->foreignId('destination_id');
             $table->foreign('destination_id')->references('id')->on('destinations')->onDelete('cascade');
             $table->integer('total_price');
-            $table->integer('remaining_payment');
+            // $table->integer('remaining_payment');
             $table->string('transaction_status');
             $table->date('departure_date');
             $table->date('return_date');

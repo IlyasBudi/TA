@@ -26,8 +26,8 @@ return new class extends Migration
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreignId('kantor_cabang_id');
             $table->foreign('kantor_cabang_id')->references('id')->on('kantor_cabangs')->onDelete('cascade');
-            // $table->foreignId('destination_id');
-            // $table->foreign('destination_id')->references('id')->on('destinations')->onDelete('cascade');
+            $table->foreignId('destination_id');
+            $table->foreign('destination_id')->references('id')->on('destinations')->onDelete('cascade');
             $table->foreignId('category_bus_id');
             $table->foreign('category_bus_id')->references('id')->on('category_buses')->onDelete('cascade');
             $table->foreignId('bus_id');

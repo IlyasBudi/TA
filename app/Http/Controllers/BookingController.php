@@ -157,6 +157,7 @@ class BookingController extends Controller
                     'admin_id' => $admin_id,
                     'user_id' => $user_id,
                     'kantor_cabang_id' => $kantorcabang_id,
+                    // 'destination_id' => $destination_id,
                     'category_bus_id' => $validated['category_bus_id'],
                     'bus_id' => $bus_id,
                     'destination' => $validated['destination'],

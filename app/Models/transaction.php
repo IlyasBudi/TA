@@ -12,8 +12,10 @@ class transaction extends Model
         'code',
         'kantor_cabang_id',
         'user_id',
+        'category_bus_id',
         'bus_id',
         'destination_id',
+        'destination',
         'total_price',
         'extra_charge',
         'transaction_status',
@@ -32,6 +34,11 @@ class transaction extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function category_bus()
+    {
+        return $this->belongsTo(category_bus::class);
     }
 
     public function bus()

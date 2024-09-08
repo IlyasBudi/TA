@@ -12,7 +12,7 @@ class booking extends Model
         'admin_id',
         'user_id',
         'kantor_cabang_id',
-        // 'destination_id',
+        'destination_id',
         'category_bus_id',
         'bus_id',
         'code',
@@ -47,5 +47,10 @@ class booking extends Model
     public function bus()
     {
         return $this->belongsTo(bus::class);
+    }
+
+    public function destination()
+    {
+        return $this->belongsTo(destination::class);
     }
 }

@@ -30,4 +30,9 @@ class category_bus extends Model
     {
         return $this->hasMany(booking::class);
     }
+
+    public function transaction()
+    {
+        return $this->hasMany(transaction::class);
+    }
 }
